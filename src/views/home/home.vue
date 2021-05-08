@@ -3,25 +3,42 @@
     <div class="header">
       <div class="left">司越教育</div>
       <div class="right">
-        <div class="item active">首页</div>
+        <div class="item active">
+          <router-link :to="'index'">首页</router-link>
+        </div>
         <div class="height"></div>
-        <div class="item">专升本资讯</div>
+        <div class="item">
+          <router-link :to="'information'">专升本资讯</router-link>
+        </div>
         <div class="height"></div>
-        <div class="item">辅导课堂</div>
+        <div class="item">
+          <router-link :to="'index2'">辅导课堂</router-link>
+        </div>
         <div class="height"></div>
-        <div class="item">试题中心</div>
+        <div class="item">
+          <router-link :to="'index3'">试题中心</router-link>
+        </div>
         <div class="height"></div>
-        <div class="item">关于我们</div>
+        <div class="item">
+          <router-link :to="'index4'">关于我们</router-link>
+        </div>
       </div>
     </div>
-    <router-view />
+    <div style="min-height: 400px">
+      <router-view />
+    </div>
+    <base-footer></base-footer>
   </div>
 </template>
 <script>
+import BaseFooter from "@/components/baseFooter";
 export default {
   name: "home",
   data() {
     return {};
+  },
+  components: {
+    BaseFooter,
   },
 };
 </script>
