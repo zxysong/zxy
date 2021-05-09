@@ -6,17 +6,45 @@
         <p class="left-tip">Upgrade Information</p>
       </div>
       <div class="right">
-        <div class="right-tab active">热门推荐</div>
-        <div class="right-tab">开课公告</div>
-        <div class="right-tab">备考资讯</div>
+        <div class="right-tab base-pointer active">热门推荐</div>
+        <div class="right-tab base-pointer">开课公告</div>
+        <div class="right-tab base-pointer">备考资讯</div>
       </div>
     </div>
     <div class="content">
       <div class="left">
         <img src="../../assets/imgs/4.png" alt="" />
-        <div></div>
+        <div class="plan">
+          <div>浙江省2021年普通高校专升本招生计划</div>
+          <div class="arrow el-icon-arrow-right"></div>
+        </div>
+        <div class="time-line">
+          <div class="time">
+            <div>2021年</div>
+            <div>05.06</div>
+          </div>
+          <div class="line"></div>
+          <div class="detailed">
+            这是具体的浙江省2021年普通高校专升本招生计划，这是具体的浙江省2021年普通高校专升本招生计划
+          </div>
+        </div>
       </div>
-      <div class="right">2</div>
+      <div class="right">
+        <div class="item base-pointer" v-for="(item, index) in 9" :key="item">
+          <div>
+            <span
+              class="circle"
+              :style="{ background: index > 2 ? '#757775' : '#ee7435' }"
+              >{{ "0" + item }}</span
+            >
+            <span class="info over-hidden"
+              >浙江万里学院2021年“专升本”招生简章</span
+            >
+          </div>
+          <div class="info-time">2021.5.2</div>
+        </div>
+        <div class="more base-pointer">查看更多></div>
+      </div>
     </div>
   </div>
 </template>
@@ -66,10 +94,87 @@ export default {
       display: block;
       width: 100%;
     }
+    .plan {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      & > div {
+        color: #535553;
+      }
+      .arrow {
+        border-radius: 50%;
+        background: #7d7d7d;
+        width: 22px;
+        height: 22px;
+        padding-left: 3px;
+        color: #fff;
+        padding-top: 2px;
+      }
+    }
+    .time-line {
+      display: flex;
+      .time,
+      .detailed,
+      .line {
+        display: flex;
+        color: #757775;
+      }
+      .time {
+        width: 80px;
+        flex-direction: column;
+        justify-content: space-between;
+        & > div {
+          color: #757775;
+        }
+      }
+      .detailed {
+        padding-left: 20px;
+        width: 80%;
+        font-size: 14px;
+      }
+      .line {
+        width: 1px;
+        height: 60px;
+        background: #bbb;
+      }
+    }
   }
   .right {
     width: 50%;
     display: inline-block;
+    vertical-align: top;
+    padding-left: 30px;
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      .circle {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        // background: #ee7435;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+      }
+      .info {
+        margin-left: 16px;
+        font-size: 14px;
+        color: #757775;
+        max-width: 80%;
+      }
+      .info-time {
+        font-size: 14px;
+        color: #757775;
+      }
+    }
+    .more {
+      color: #51a3f6;
+      text-align: right;
+      font-size: 14px;
+    }
   }
 }
 </style>

@@ -2,15 +2,27 @@
   <div>
     <base-carousel></base-carousel>
     <index-information></index-information>
+    <index-major></index-major>
+    <index-class></index-class>
+    <index-rec></index-rec>
+    <index-questions></index-questions>
   </div>
 </template>
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import indexInformation from "./indexInformation";
+import indexMajor from "./indexMajor";
+import indexClass from "./indexClass";
+import indexRec from "./indexRec";
+import indexQuestions from "./indexQuestions";
 export default {
   components: {
     baseCarousel,
     indexInformation,
+    indexMajor,
+    indexClass,
+    indexRec,
+    indexQuestions,
   },
 };
 </script>

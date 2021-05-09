@@ -13,16 +13,16 @@
     </div>
     <div class="item">
       <div>辅导课堂</div>
-      <p class="mr-30">全日制协议班</p>
-      <p class="mr-30">至尊vip保过班</p>
-      <p class="mr-30">SVIP保过班</p>
+      <p class="mr-30 base-pointer">全日制协议班</p>
+      <p class="mr-30 base-pointer">至尊vip保过班</p>
+      <p class="mr-30 base-pointer">SVIP保过班</p>
     </div>
     <div class="item">
       <div>试题下载</div>
-      <p class="mr-30">高等数学</p>
-      <p class="mr-30">大学英语</p>
-      <p class="mr-30">大学语文</p>
-      <p class="mr-30">历年真题</p>
+      <p class="mr-30 base-pointer">高等数学</p>
+      <p class="mr-30 base-pointer">大学英语</p>
+      <p class="mr-30 base-pointer">大学语文</p>
+      <p class="mr-30 base-pointer">历年真题</p>
     </div>
     <div class="item">
       <div>浙江司越专升本</div>
