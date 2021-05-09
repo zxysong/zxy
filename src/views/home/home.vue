@@ -3,12 +3,20 @@
     <div class="header">
       <div class="left">司越教育</div>
       <div class="right">
-        <div class="item active">
-          <router-link :to="'index'">首页</router-link>
+        <div class="item">
+          <router-link
+            :to="'index'"
+            :class="{ active: $route.path.includes('/home/index') }"
+            >首页</router-link
+          >
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'information'">专升本资讯</router-link>
+          <router-link
+            :to="'information'"
+            :class="{ active: $route.path.includes('/home/information') }"
+            >专升本资讯</router-link
+          >
         </div>
         <div class="height"></div>
         <div class="item">
