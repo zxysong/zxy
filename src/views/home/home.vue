@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-wrap">
     <div class="header">
       <div class="left">司越教育</div>
       <div class="right">
@@ -20,21 +20,25 @@
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'index2'">辅导课堂</router-link>
+          <router-link :to="'/home/tutorialClass'"
+           :class="{ active: $route.path.includes('/home/tutorialClass') }">辅导课堂</router-link>
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'index3'">试题中心</router-link>
+          <router-link :to="'/home/testCenter'"
+           :class="{ active: $route.path.includes('/home/testCenter') }">试题中心</router-link>
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'index4'">关于我们</router-link>
+          <router-link :to="'/home/aboutUs'"
+            :class="{ active: $route.path.includes('/home/aboutUs') }">关于我们</router-link>
         </div>
       </div>
     </div>
-    <div style="min-height: 400px">
+    <div class="main-wrap">
       <router-view />
     </div>
+
     <base-footer></base-footer>
   </div>
 </template>
@@ -51,6 +55,17 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.home-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  .main-wrap {
+    flex: 1;
+    min-width: 1200px;
+    width: 100%;
+  }
+}
 .header {
   display: flex;
 }
