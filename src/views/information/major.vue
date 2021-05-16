@@ -3,7 +3,7 @@
     <base-carousel></base-carousel>
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
-      <div class="hot">热门推荐</div>
+      <div class="hot hot-bor">招生专业详情</div>
       <div v-for="item in 10" :key="item" class="item">
         <div class="left">
           我是内容我是内容关于浙江司越专升本课程价格调整的通知
@@ -45,6 +45,11 @@ export default {
     color: #757775;
     font-size: 20px;
     margin-bottom: 20px;
+  }
+  .hot-bor {
+    display: inline-block;
+    border-bottom: 1px solid #ee7435;
+    padding-bottom: 10px;
   }
   .item {
     display: flex;

@@ -11,12 +11,35 @@
           >
         </div>
         <div class="height"></div>
-        <div class="item">
-          <router-link
+        <div class="item" style="padding: 0; cursor: pointer">
+          <!-- <router-link
             :to="'information'"
             :class="{ active: $route.path.includes('/home/information') }"
             >专升本资讯</router-link
-          >
+          > -->
+          <el-dropdown>
+            <div>专升本资讯</div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="goDetailed('hot')"
+                >热门推荐</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="goDetailed('notice')"
+                >开课公告</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="goDetailed('preparation')"
+                >备考咨讯</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="goDetailed('plan')"
+                >招生计划</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="goDetailed('universities')"
+                >招生院校</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="goDetailed('major')"
+                >招生专业</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div class="height"></div>
         <div class="item">
@@ -48,6 +71,13 @@ export default {
   components: {
     BaseFooter,
   },
+  methods: {
+    goDetailed(type) {
+      this.$router.push({
+        path: `${type}`,
+      });
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -63,7 +93,7 @@ export default {
   display: flex;
 }
 .item {
-  padding: 0 30px;
+  margin: 0 30px;
   color: #535553;
 }
 .active {
