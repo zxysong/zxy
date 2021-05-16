@@ -53,6 +53,7 @@ export default {
     .left-tip {
       // padding-left: 40px;
       color: #aeaeae;
+      margin-top: 12px;
     }
   }
   .right {
