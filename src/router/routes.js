@@ -65,6 +65,10 @@ const routes = [
     ]
   },
   {
+    path: '/login',
+    component: () => import(/* webpackChunkName: "home" */ '@/views/login/index.vue'),
+  },
+  {
     path: '/',
     redirect: '/home'
   },

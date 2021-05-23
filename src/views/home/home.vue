@@ -1,7 +1,9 @@
 <template>
   <div class="home-wrap">
     <div class="header">
-      <div class="left">司越教育</div>
+      <div class="left">
+        <img src="../../assets/imgs/title.png" alt="" />
+      </div>
       <div class="right">
         <div class="item">
           <router-link
@@ -43,18 +45,27 @@
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'/home/tutorialClass'"
-           :class="{ active: $route.path.includes('/home/tutorialClass') }">辅导课堂</router-link>
+          <router-link
+            :to="'/home/tutorialClass'"
+            :class="{ active: $route.path.includes('/home/tutorialClass') }"
+            >辅导课堂</router-link
+          >
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'/home/testCenter'"
-           :class="{ active: $route.path.includes('/home/testCenter') }">试题中心</router-link>
+          <router-link
+            :to="'/home/testCenter'"
+            :class="{ active: $route.path.includes('/home/testCenter') }"
+            >试题中心</router-link
+          >
         </div>
         <div class="height"></div>
         <div class="item">
-          <router-link :to="'/home/aboutUs'"
-            :class="{ active: $route.path.includes('/home/aboutUs') }">关于我们</router-link>
+          <router-link
+            :to="'/home/aboutUs'"
+            :class="{ active: $route.path.includes('/home/aboutUs') }"
+            >关于我们</router-link
+          >
         </div>
       </div>
     </div>
@@ -102,13 +113,17 @@ export default {
 .left,
 .right {
   display: inline-block;
-  padding: 38px 0;
+}
+.title {
+  background-image: url("../../assets/imgs/title.png");
 }
 .right {
   display: flex;
+  align-items: center;
+  margin-left: 100px;
 }
 .item {
-  margin: 0 30px;
+  margin: 0 60px;
   color: #535553;
 }
 .active {
