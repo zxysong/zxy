@@ -79,7 +79,7 @@ export default {
     }
   }
   .el-container {
-    height: 100%;
+    height: calc(100% - 50px);
     /deep/.el-menu {
       border: none;
     }

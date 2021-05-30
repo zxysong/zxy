@@ -2,9 +2,11 @@
   <div>
     <base-breadcrumb :list="touterList"></base-breadcrumb>
     <div class="content">
-      <div>考试动态</div>
-      <div>
-        <el-button>添加动态</el-button>
+      <div style="padding-top: 28px">考试动态</div>
+      <div class="clear">
+        <el-button size="small" class="fr btn" @click="addtest"
+          >添加动态</el-button
+        >
         <el-table :data="tableData" border style="width: 100%">
           <el-table-column type="index" label="序号" width="50" align="center">
           </el-table-column>
@@ -30,6 +32,13 @@
             </template>
           </el-table-column>
         </el-table>
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="1000"
+          class="pagination"
+        >
+        </el-pagination>
       </div>
     </div>
   </div>
@@ -42,5 +51,26 @@ export default {
       tableData: [],
     };
   },
+  methods: {
+    addtest() {
+      this.$router.push({
+        path: "adminaddtest",
+      });
+    },
+  },
 };
 </script>
+<style lang="less" scoped>
+.pagination {
+  text-align: right;
+  text-align: right;
+  padding-right: 0;
+  margin-bottom: 30px;
+  margin-top: 18px;
+}
+.btn {
+  background-color: #38a28a;
+  color: #fff;
+  margin-bottom: 18px;
+}
+</style>
