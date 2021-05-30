@@ -125,6 +125,9 @@ export default {
 .item {
   margin: 0 60px;
   color: #535553;
+  a {
+    color: #535553;
+  }
 }
 .active {
   color: #51a3f6;

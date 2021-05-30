@@ -65,6 +65,42 @@ const routes = [
     ]
   },
   {
+    path: '/admin',
+    component: () => import(/* webpackChunkName: "home" */ '@/views/admin/admin.vue'),
+    children: [
+      {
+        path: 'admintest',
+        name: 'admintest',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/admin/test.vue'),
+      },
+      {
+        path: 'adminpaln',
+        name: 'adminpaln',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/adminpaln/index.vue'),
+      },
+      {
+        path: 'adminuniversities',
+        name: 'adminuniversities',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/adminuniversities/index.vue'),
+      },
+      {
+        path: 'adminmajor',
+        name: 'adminmajor',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/adminmajor/index.vue'),
+      },
+      {
+        path: 'admincar',
+        name: 'admincar',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/admincar/index.vue'),
+      },
+      {
+        path: 'adminmajortest',
+        name: 'adminmajortest',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/adminmajortest/index.vue'),
+      },
+    ]
+  },
+  {
     path: '/login',
     component: () => import(/* webpackChunkName: "home" */ '@/views/login/index.vue'),
   },
@@ -74,7 +110,7 @@ const routes = [
   },
   {
     path: '*',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/home/home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '@/notFound.vue')
   }
 ]
 export default routes;

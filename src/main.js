@@ -5,10 +5,11 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './style/base.less'
-
+import baseBreadcrumb from '@/components/baseBreadcrumb'
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
+Vue.component('baseBreadcrumb', baseBreadcrumb)
 new Vue({
   router,
   store,
