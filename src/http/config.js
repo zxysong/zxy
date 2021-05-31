@@ -1,10 +1,11 @@
 import axios from 'axios'
 
+let url = process.env.VUE_APP_API;
 class http {
   constructor() {
     this._http = axios.create({
       timeout: 100000,
-      baseURL: "/",
+      baseURL: url,
       withCredentials: true
     });
     this.interceptors();
@@ -12,16 +13,20 @@ class http {
   get(url, params) {
     return this._http.get(url, {
       params: {
-        ...Params
+        ...params
       }
     });
   }
   post(url, params) {
-    return this._http.post(url, { ...Params });
+    return this._http.post(url, { ...params });
   }
   interceptors() {
     this._http.interceptors.request.use(
       function (config) {
+        let token = localStorage.getItem("token");
+        if (token) {
+          config.headers.token = token;
+        }
         return config;
       },
       function (err) {
@@ -30,7 +35,7 @@ class http {
     );
     this._http.interceptors.response.use(
       function (response) {
-        return response;
+        return response.data;
       },
       function (err) {
         return Promise.reject(err);

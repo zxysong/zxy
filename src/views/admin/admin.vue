@@ -5,10 +5,10 @@
       <div>
         <el-dropdown>
           <span class="el-dropdown-link fff">
-            小刀<i class="el-icon-arrow-down el-icon--right fff"></i>
+            {{ userName }}<i class="el-icon-arrow-down el-icon--right fff"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click.native="out">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -53,12 +53,24 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      userName: "",
+    };
+  },
+  mounted() {
+    this.userName = localStorage.getItem("userName");
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    out() {
+      localStorage.clear();
+      this.$router.push("/login");
     },
   },
 };

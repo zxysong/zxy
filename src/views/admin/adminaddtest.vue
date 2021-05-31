@@ -7,30 +7,38 @@
         <div class="clear">
           <el-button size="small" class="fr btn" @click="back">返回</el-button>
         </div>
-        <el-form label-width="120px" :model="form">
+        <el-form label-width="120px" :model="form" ref="form" :rules="rules">
           <el-row :gutter="20">
             <el-col :span="8"
-              ><el-form-item label="动态标题">
-                <el-input v-model="form.username"></el-input> </el-form-item
+              ><el-form-item label="动态标题" prop="title">
+                <el-input v-model="form.title"></el-input> </el-form-item
             ></el-col>
             <el-col :span="8">
-              <el-form-item label="动态分类">
-                <el-input v-model="form.password"></el-input>
+              <el-form-item label="动态分类" prop="type">
+                <el-input v-model="form.type"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
-            <el-col :span="8"
-              ><el-form-item label="动态封面">
+            <el-col :span="16"
+              ><el-form-item label="动态封面" prop="coverPicUrl">
                 <el-upload
                   class="avatar-uploader"
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  :show-file-list="false"
+                  action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
+                  list-type="picture-card"
+                  :auto-upload="true"
+                  :multiple="false"
+                  :accept="'image/*'"
                   :on-success="handleAvatarSuccess"
                   :before-upload="beforeAvatarUpload"
+                  :data="uploadData"
+                  :headers="uploadData.token"
                 >
-                  <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  <!-- <img v-if="coverPicUrl" :src="coverPicUrl" class="avatar" /> -->
+                  <i
+                    class="el-icon-plus avatar-uploader-icon"
+                    @click="addpic"
+                  ></i>
                   <div style="text-align: center">上传照片</div>
                   <div slot="tip" class="el-upload__tip">
                     只能上传jpg/png文件，且不超过500kb
@@ -39,22 +47,109 @@
               </el-form-item>
             </el-col>
           </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8"
+              ><el-form-item label="动态描述" prop="description">
+                <el-input v-model="form.description"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="16"
+              ><el-form-item label="动态内容" prop="context">
+                <el-input
+                  type="textarea"
+                  v-model="form.context"
+                  :autosize="{ minRows: 8, maxRows: 20 }"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
+
+        <el-button
+          size="small"
+          class="btn"
+          @click="addtest"
+          style="margin-left: 120px"
+          >立即添加</el-button
+        >
+        <el-button size="small" @click="back">取消</el-button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { addexam } from "@/http";
 export default {
   data() {
     return {
       touterList: [{ name: "资讯管理" }, { name: "考试动态" }],
-      form: {},
+      coverPicUrl: "",
+      uploadData: {
+        code: "exam",
+        token: {
+          token: "",
+        },
+      },
+      form: {
+        title: "",
+        type: "",
+        coverPicUrl: "",
+        description: "",
+        context: "",
+      },
+      rules: {
+        title: [{ required: true, message: "请输入动态标题", trigger: "blur" }],
+        type: [{ required: true, message: "请选择动态分类", trigger: "blur" }],
+        coverPicUrl: [
+          { required: true, message: "请上传图片", trigger: "blur" },
+        ],
+        description: [
+          { required: true, message: "请输入动态描述", trigger: "blur" },
+        ],
+        context: [
+          { required: true, message: "请输入动态内容", trigger: "blur" },
+        ],
+      },
+    };
+  },
+  mounted() {
+    this.uploadData.token = {
+      token: localStorage.getItem("token"),
     };
   },
   methods: {
+    handleAvatarSuccess(response, file, list) {
+      console.log(response);
+      console.log(file);
+      console.log(list);
+      if (list.length > 1) {
+        list.shift();
+      }
+      this.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.form.coverPicUrl = response?.entry?.fileNameNew || "";
+    },
+    beforeAvatarUpload() {},
+    addpic() {},
     back() {
       this.$router.back();
+    },
+    addtest() {
+      this.$refs["form"].validate((valid) => {
+        if (valid) {
+          let params = {
+            ...this.form,
+          };
+          addexam(params);
+        } else {
+          this.$message({
+            message: "您有内容未填写",
+            type: "warning",
+          });
+          return false;
+        }
+      });
     },
   },
 };

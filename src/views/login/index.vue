@@ -13,12 +13,15 @@
             <i class="icon el-icon-lock"></i>
           </el-form-item>
         </el-form>
-        <div class="submit" @click="submit">登录</div>
+        <div class="submit" @click="submit">
+          {{ loading ? "登录中" : "登录" }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { loginApi } from "@/http";
 export default {
   data() {
     return {
@@ -26,13 +29,22 @@ export default {
         username: "",
         password: "",
       },
+      loading: false,
     };
   },
   methods: {
-    submit() {
-      this.$router.replace({
-        path: "/admin/admintest",
-      });
+    async submit() {
+      if (this.loading) return;
+      this.loading = true;
+      let { entry } = await loginApi();
+      this.loading = false;
+      if (entry && entry.token) {
+        localStorage.setItem("token", entry.token);
+        localStorage.setItem("userName", entry.userName);
+        this.$router.replace({
+          path: "/admin/admintest",
+        });
+      }
     },
   },
 };
