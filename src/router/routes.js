@@ -66,48 +66,53 @@ const routes = [
   },
   {
     path: '/admin',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/admin/admin.vue'),
+    component: () => import(/* webpackChunkName: "admin" */ '@/views/admin/admin.vue'),
     children: [
       {
         path: 'admintest',
         name: 'admintest',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/admin/test.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/admin/test.vue'),
       },
       {
         path: 'adminaddtest',
         name: 'adminaddtest',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/admin/adminaddtest.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/admin/adminaddtest.vue'),
       },
       {
         path: 'adminpaln',
         name: 'adminpaln',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/adminpaln/index.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminpaln/index.vue'),
+      },
+      {
+        path: 'adminAddPaln',
+        name: 'adminAddPaln',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminpaln/adminAddPaln.vue'),
       },
       {
         path: 'adminuniversities',
         name: 'adminuniversities',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/adminuniversities/index.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminuniversities/index.vue'),
       },
       {
         path: 'adminmajor',
         name: 'adminmajor',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/adminmajor/index.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminmajor/index.vue'),
       },
       {
         path: 'admincar',
         name: 'admincar',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/admincar/index.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/admincar/index.vue'),
       },
       {
         path: 'adminmajortest',
         name: 'adminmajortest',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/adminmajortest/index.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminmajortest/index.vue'),
       },
     ]
   },
   {
     path: '/login',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/login/index.vue'),
+    component: () => import(/* webpackChunkName: "admin" */ '@/views/login/index.vue'),
   },
   {
     path: '/',

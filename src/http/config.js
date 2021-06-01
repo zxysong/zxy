@@ -20,6 +20,13 @@ class http {
   post(url, params) {
     return this._http.post(url, { ...params });
   }
+  delete(url, params) {
+    return this._http.delete(url, {
+      params: {
+        ...params
+      }
+    });
+  }
   interceptors() {
     this._http.interceptors.request.use(
       function (config) {

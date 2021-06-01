@@ -165,7 +165,7 @@ export default {
               type: "success",
             });
             this.$router.push({
-              path: "admintest",
+              path: "adminpaln",
             });
           }
         } else {

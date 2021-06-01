@@ -10,49 +10,101 @@
         <el-table :data="tableData" border style="width: 100%">
           <el-table-column type="index" label="序号" width="50" align="center">
           </el-table-column>
-          <el-table-column prop="date" label="标题" width="150" align="center">
+          <el-table-column prop="title" label="标题" width="150" align="center">
           </el-table-column>
-          <el-table-column prop="name" label="封面" minWidth="120">
+          <el-table-column prop="coverPicUrl" label="封面" minWidth="120">
+            <template slot-scope="scope">
+              <img :src="scope.row.coverPicUrl" alt="" />
+            </template>
           </el-table-column>
-          <el-table-column prop="province" label="描述" minWidth="120">
+          <el-table-column prop="description" label="描述" minWidth="120">
           </el-table-column>
           <el-table-column prop="city" label="上传人" width="120">
           </el-table-column>
-          <el-table-column prop="address" label="分类" width="120">
+          <el-table-column prop="type" label="分类" width="120">
           </el-table-column>
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
               <el-button
-                @click="handleClick(scope.row)"
+                @click="handleEdit(scope.row)"
                 type="text"
                 size="small"
-                >查看</el-button
+                class="edit-btn"
+                >编辑</el-button
               >
-              <el-button type="text" size="small">编辑</el-button>
+              <el-button
+                @click="handledelete(scope.row)"
+                type="text"
+                size="small"
+                class="delete-btn"
+                >删除</el-button
+              >
             </template>
           </el-table-column>
         </el-table>
         <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="1000"
           class="pagination"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[10, 50, 100, 200]"
+          :page-size="pageSize"
+          background
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="totals"
         >
         </el-pagination>
+        <img
+          src="http://47.96.139.20:8200/adult-exam/exam/myproject/image/exam/fa17f89d914c4f3b86083af395c5adc0.jpg"
+          alt=""
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
+import { queryexamList, deleteexamList } from "@/http";
+import { mapMutations } from "vuex";
+import mixins from "@/mixins/table";
 export default {
+  mixins: [mixins],
   data() {
     return {
       touterList: [{ name: "资讯管理" }, { name: "考试动态" }],
-      tableData: [],
     };
   },
+  mounted() {
+    this.queryList();
+  },
   methods: {
+    ...mapMutations(["setAddTest", "clearAddTest"]),
     addtest() {
+      this.clearAddTest();
+      this.$router.push({
+        path: "adminaddtest",
+      });
+    },
+    async queryList() {
+      let p = {
+        // examType: "HOT_RECOMMEND",
+        page: this.currentPage,
+        pageSize: this.pageSize,
+      };
+      let res = await queryexamList(p);
+      this.totals = res.totalRecordSize || 0;
+      this.tableData = res.entry || [];
+    },
+    handledelete(row) {
+      deleteexamList({ ids: row.id })
+        .then((res) => {
+          console.log(res);
+        })
+        .finally(() => {
+          this.queryList();
+        });
+    },
+    handleEdit(row) {
+      this.setAddTest(row);
       this.$router.push({
         path: "adminaddtest",
       });
