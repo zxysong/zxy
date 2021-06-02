@@ -94,6 +94,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "admin" */ '@/views/adminuniversities/index.vue'),
       },
       {
+        path: 'adminAddUniversities',
+        name: 'adminAddUniversities',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminuniversities/adminAddUniversities.vue'),
+      },
+      {
         path: 'adminmajor',
         name: 'adminmajor',
         component: () => import(/* webpackChunkName: "admin" */ '@/views/adminmajor/index.vue'),

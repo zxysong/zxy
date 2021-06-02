@@ -12,14 +12,29 @@
           </el-table-column>
           <el-table-column prop="title" label="标题" width="150" align="center">
           </el-table-column>
-          <el-table-column prop="coverPicUrl" label="封面" minWidth="120">
+          <el-table-column prop="coverPicUrl" label="封面" width="160">
             <template slot-scope="scope">
               <img :src="scope.row.coverPicUrl" alt="" />
             </template>
           </el-table-column>
           <el-table-column prop="description" label="描述" minWidth="120">
           </el-table-column>
-          <el-table-column prop="city" label="上传人" width="120">
+          <el-table-column prop="context" label="动态内容" minWidth="120">
+            <template slot-scope="scope">
+              <el-popover
+                trigger="hover"
+                placement="top"
+                width="800"
+                class="popper-class"
+              >
+                <p>{{ scope.row.context }}</p>
+                <div slot="reference" class="name-wrapper">
+                  <p style="width: 100%; height: 100px">
+                    {{ scope.row.context }}
+                  </p>
+                </div>
+              </el-popover>
+            </template>
           </el-table-column>
           <el-table-column prop="type" label="分类" width="120">
           </el-table-column>

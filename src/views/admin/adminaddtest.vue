@@ -129,6 +129,7 @@ export default {
       token: localStorage.getItem("token"),
     };
     this.form = Object.assign({}, this.form, this.addTestObj);
+    this.picShow(this.form.coverPicUrl);
     console.log(this.form);
   },
   methods: {
@@ -178,11 +179,16 @@ export default {
       });
     },
     picShow(url) {
-      pictureShow({ fileName: url }).then((res) => {
-        // this.form.coverPicUrl = res;
-        // let obj = {
-        //   url: res,
-        // };
+      pictureShow({ fileName: url }, { responseType: "blob" }).then((res) => {
+        // this.coverPicUrl = res;
+        this.coverPicUrl =
+          "data:image/png;base64," +
+          btoa(
+            new Uint8Array(res).reduce(
+              (data, byte) => data + String.fromCharCode(byte),
+              ""
+            )
+          );
       });
     },
   },

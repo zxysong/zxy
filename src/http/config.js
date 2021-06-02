@@ -10,12 +10,12 @@ class http {
     });
     this.interceptors();
   }
-  get(url, params) {
+  get(url, params, p = {}) {
     return this._http.get(url, {
       params: {
         ...params
       }
-    });
+    }, p);
   }
   post(url, params) {
     return this._http.post(url, { ...params });

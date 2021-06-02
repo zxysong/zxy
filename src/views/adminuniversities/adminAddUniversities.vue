@@ -2,7 +2,7 @@
   <div>
     <base-breadcrumb :list="touterList"></base-breadcrumb>
     <div class="content">
-      <div style="padding-top: 28px">请填写招生计划相关信息</div>
+      <div style="padding-top: 28px">请填写招生院校相关信息</div>
       <div>
         <div class="clear">
           <el-button size="small" class="fr btn" @click="back">返回</el-button>
@@ -10,7 +10,7 @@
         <el-form label-width="120px" :model="form" ref="form" :rules="rules">
           <el-row :gutter="20">
             <el-col :span="8"
-              ><el-form-item label="招生计划标题" prop="enrollmentTitle">
+              ><el-form-item label="招生院校标题" prop="enrollmentTitle">
                 <el-input
                   v-model="form.enrollmentTitle"
                 ></el-input> </el-form-item
@@ -18,7 +18,7 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="16"
-              ><el-form-item label="招生计划封面" prop="coverPicUrl">
+              ><el-form-item label="招生院校封面" prop="coverPicUrl">
                 <el-upload
                   class="avatar-uploader"
                   action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
@@ -46,14 +46,14 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8"
-              ><el-form-item label="招生计划描述" prop="description">
+              ><el-form-item label="招生院校描述" prop="description">
                 <el-input v-model="form.description"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="16"
-              ><el-form-item label="招生计划内容" prop="context">
+              ><el-form-item label="招生院校内容" prop="context">
                 <el-input
                   type="textarea"
                   v-model="form.context"
@@ -84,8 +84,8 @@ export default {
     return {
       touterList: [
         { name: "资讯管理" },
-        { name: "招生计划" },
-        { name: "添加招生计划" },
+        { name: "招生院校" },
+        { name: "添加招生院校" },
       ],
       typeOptions: ["热门推荐", "开课公告", "备考资讯"],
       coverPicUrl: "",
@@ -160,7 +160,7 @@ export default {
               type: "success",
             });
             this.$router.push({
-              path: "adminpaln",
+              path: "adminAddUniversities",
             });
           }
         } else {
