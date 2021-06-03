@@ -116,6 +116,14 @@ const routes = [
     ]
   },
   {
+    path: '/personalizedEvaluation',
+    name: 'personalizedEvaluation',
+    component: () => import(/* webpackChunkName: "admin" */ '@/views/personalizedEvaluation/index.vue'),
+    meta: {
+      title: '个性化测评'
+    }
+  },
+  {
     path: '/login',
     component: () => import(/* webpackChunkName: "admin" */ '@/views/login/index.vue'),
   },
