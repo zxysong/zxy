@@ -176,6 +176,14 @@ const routes = [
     }
   },
   {
+    path: '/diagnosisReport',
+    name: 'diagnosisReport',
+    component: () => import(/* webpackChunkName: "admin" */ '@/views/diagnosisReport/index.vue'),
+    meta: {
+      title: '诊断报告'
+    }
+  },
+  {
     path: '/login',
     component: () => import(/* webpackChunkName: "admin" */ '@/views/login/index.vue'),
   },
