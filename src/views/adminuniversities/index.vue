@@ -101,12 +101,12 @@ export default {
     addtest() {
       this.clearAddTest();
       this.$router.push({
-        path: "adminuniversities",
+        path: "adminAddUniversities",
       });
     },
     async queryList() {
       let p = {
-        enrollmentType: "ENROLLMENT_PLAN",
+        enrollmentType: "ENROLLMENT_SCHOOL",
         page: this.currentPage,
         pageSize: this.pageSize,
       };
@@ -126,7 +126,7 @@ export default {
     handleEdit(row) {
       this.setAddTest(row);
       this.$router.push({
-        path: "adminuniversities",
+        path: "adminAddUniversities",
       });
     },
   },

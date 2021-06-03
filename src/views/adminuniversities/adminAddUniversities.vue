@@ -90,7 +90,7 @@ export default {
       typeOptions: ["热门推荐", "开课公告", "备考资讯"],
       coverPicUrl: "",
       uploadData: {
-        code: "exam",
+        code: "enrollment_school",
         token: {
           token: "",
         },
@@ -145,7 +145,7 @@ export default {
           let params = {
             ...this.form,
           };
-          params.enrollmentType = "招生计划";
+          params.enrollmentType = "招生院校";
           params.publishTime = this.getTime();
           let res;
           if (params.id) {
@@ -160,7 +160,7 @@ export default {
               type: "success",
             });
             this.$router.push({
-              path: "adminAddUniversities",
+              path: "adminuniversities",
             });
           }
         } else {
@@ -185,7 +185,7 @@ export default {
       let y = data.getFullYear();
       let m = data.getMonth() + 1;
       let d = data.getDate();
-      return `${y}年${m >= 10 ? m : "0" + m}月${d >= 10 ? d : "0" + m}日`;
+      return `${y}年${m >= 10 ? m : "0" + m}月${d >= 10 ? d : "0" + d}日`;
     },
   },
   computed: {
