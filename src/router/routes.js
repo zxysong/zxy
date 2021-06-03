@@ -104,15 +104,67 @@ const routes = [
         component: () => import(/* webpackChunkName: "admin" */ '@/views/adminmajor/index.vue'),
       },
       {
+        path: 'adminAddMajor',
+        name: 'adminAddMajor',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/adminmajor/adminAddMajor.vue'),
+      },
+      {
         path: 'admincar',
         name: 'admincar',
         component: () => import(/* webpackChunkName: "admin" */ '@/views/admincar/index.vue'),
+      },
+      {
+        path: 'adminAddCcar',
+        name: 'adminAddCcar',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/admincar/adminAddCcar.vue'),
       },
       {
         path: 'adminmajortest',
         name: 'adminmajortest',
         component: () => import(/* webpackChunkName: "admin" */ '@/views/adminmajortest/index.vue'),
       },
+      {
+        path: 'specializedTraining',
+        name: 'specializedTraining',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/specializedTraining/index.vue'),
+      },
+      {
+        path: 'addspecializedTraining',
+        name: 'addspecializedTraining',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/specializedTraining/addSpecialiZedtraining.vue'),
+      },
+
+
+      {
+        path: 'themeYear',
+        name: 'themeYear',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/themeYear/index.vue'),
+      },
+      {
+        path: 'addthemeYear',
+        name: 'addthemeYear',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/themeYear/addthemeYear.vue'),
+      },
+      {
+        path: 'simulationTest',
+        name: 'simulationTest',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/simulationTest/index.vue'),
+      },
+      {
+        path: 'addsimulationTest',
+        name: 'addsimulationTest',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/simulationTest/addsimulationTest.vue'),
+      },
+      {
+        path: 'examination',
+        name: 'examination',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/examination/index.vue'),
+      },
+      {
+        path: 'addexamination',
+        name: 'addexamination',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/examination/addexamination.vue'),
+      }
     ]
   },
   {

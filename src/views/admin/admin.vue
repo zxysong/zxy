@@ -39,9 +39,17 @@
             <el-menu-item index="admincar">
               <span slot="title">轮播图管理</span>
             </el-menu-item>
-            <el-menu-item index="adminmajortest">
-              <span slot="title">试题管理</span>
-            </el-menu-item>
+            <el-submenu index="adminmajortest">
+              <template slot="title">
+                <span>试题管理</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="admintest">专项训练</el-menu-item>
+                <el-menu-item index="adminpaln">历年真题</el-menu-item>
+                <el-menu-item index="adminuniversities">模拟测试</el-menu-item>
+                <el-menu-item index="adminmajor">考试大纲</el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
           </el-menu>
         </div>
       </el-aside>

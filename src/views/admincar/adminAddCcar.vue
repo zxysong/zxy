@@ -2,7 +2,7 @@
   <div>
     <base-breadcrumb :list="touterList"></base-breadcrumb>
     <div class="content">
-      <div style="padding-top: 28px">请填写招生计划相关信息</div>
+      <div style="padding-top: 28px">请填写轮播图相关信息</div>
       <div>
         <div class="clear">
           <el-button size="small" class="fr btn" @click="back">返回</el-button>
@@ -10,7 +10,7 @@
         <el-form label-width="120px" :model="form" ref="form" :rules="rules">
           <el-row :gutter="20">
             <el-col :span="8"
-              ><el-form-item label="招生计划标题" prop="enrollmentTitle">
+              ><el-form-item label="轮播图名称" prop="enrollmentTitle">
                 <el-input
                   v-model="form.enrollmentTitle"
                 ></el-input> </el-form-item
@@ -18,7 +18,7 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="16"
-              ><el-form-item label="招生计划封面" prop="coverPicUrl">
+              ><el-form-item label="轮播图素材" prop="coverPicUrl">
                 <el-upload
                   class="avatar-uploader"
                   action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
@@ -38,7 +38,7 @@
                   ></i>
                   <div style="text-align: center">上传照片</div>
                   <div slot="tip" class="el-upload__tip">
-                    只能上传jpg/png文件，且不超过500kb
+                    只能上传jpg/png文件，且不超过2M
                   </div>
                 </el-upload>
               </el-form-item>
@@ -46,19 +46,15 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="8"
-              ><el-form-item label="招生计划描述" prop="description">
+              ><el-form-item label="轮播图说明" prop="description">
                 <el-input v-model="form.description"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="16"
-              ><el-form-item label="招生计划内容" prop="context">
-                <el-input
-                  type="textarea"
-                  v-model="form.context"
-                  :autosize="{ minRows: 8, maxRows: 20 }"
-                ></el-input>
+              ><el-form-item label="轮播图链接" prop="context">
+                <el-input v-model="form.context"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -82,15 +78,11 @@ import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      touterList: [
-        { name: "资讯管理" },
-        { name: "招生计划" },
-        { name: "添加招生计划" },
-      ],
+      touterList: [{ name: "轮播图" }, { name: "添加轮播图" }],
       typeOptions: ["热门推荐", "开课公告", "备考资讯"],
       coverPicUrl: "",
       uploadData: {
-        code: "enrollment_plan",
+        code: "exam",
         token: {
           token: "",
         },
@@ -145,7 +137,7 @@ export default {
           let params = {
             ...this.form,
           };
-          params.enrollmentType = "招生计划";
+          params.enrollmentType = "招生专业";
           params.publishTime = this.getTime();
           let res;
           if (params.id) {
@@ -160,7 +152,7 @@ export default {
               type: "success",
             });
             this.$router.push({
-              path: "adminpaln",
+              path: "adminmajor",
             });
           }
         } else {
