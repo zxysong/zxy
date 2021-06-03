@@ -21,3 +21,7 @@ export const editEnrollment = (p) => httpService.post(`/adult-exam/enrollment/ad
 export const deleteEnrollment = (p) => httpService.delete(`/adult-exam/enrollment/admin/delete`, p);
 
 
+export const queryQuestionListByType = (p) => httpService.post(`/adult-exam/app/center/queryQuestionListByType`, p);
+export const addQuestionInfo = (p) => httpService.post(`/adult-exam/admin/question/addQuestionInfo`, p);
+export const updateQuestionInfo = (p) => httpService.post(`/adult-exam/admin/question/updateQuestionInfo`, p);
+export const deleteQuestionInfo = (p) => httpService.delete(`/adult-exam/admin/question/deleteQuestionInfo`, p);

@@ -14,6 +14,13 @@ export default new Vuex.Store({
       // id: "",
       // publishTime: '',
       // sortValue: 0,
+    },
+    addQuestionObj: {
+      previousTitle: "",
+      coverPicUrl: "",
+      contextPicUrl: "",
+      description: "",
+      subjectType: "",
     }
   },
   mutations: {
@@ -27,6 +34,18 @@ export default new Vuex.Store({
         coverPicUrl: "",
         description: "",
         context: "",
+      })
+    },
+    setAddQuestion(state, data) {
+      state.addQuestionObj = Object.assign({}, state.addQuestionObj, data)
+    },
+    clearAddQuestion(state) {
+      state.addQuestionObj = Object.assign({}, {
+        previousTitle: "",
+        coverPicUrl: "",
+        contextPicUrl: "",
+        description: "",
+        subjectType: "",
       })
     }
   },
