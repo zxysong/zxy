@@ -41,6 +41,8 @@
               </el-popover>
             </template>
           </el-table-column>
+          <el-table-column prop="createdBy" label="上传人" width="120">
+          </el-table-column>
           <el-table-column prop="publishTime" label="时间" width="160">
           </el-table-column>
           <el-table-column label="操作" width="100">

@@ -152,6 +152,7 @@ export default {
         if (valid) {
           let params = {
             ...this.form,
+            createdBy: localStorage.getItem("userName") || "",
           };
           let res;
           if (params.id) {

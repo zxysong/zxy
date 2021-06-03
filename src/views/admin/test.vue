@@ -36,6 +36,8 @@
               </el-popover>
             </template>
           </el-table-column>
+          <el-table-column prop="createdBy" label="上传人" width="120">
+          </el-table-column>
           <el-table-column prop="type" label="分类" width="120">
           </el-table-column>
           <el-table-column label="操作" width="100">

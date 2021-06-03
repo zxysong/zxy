@@ -188,10 +188,9 @@ export default {
     addtest() {
       this.$refs["form"].validate(async (valid) => {
         if (valid) {
-          let userName = localStorage.getItem("userName");
           let params = {
             ...this.form,
-            createdBy: userName,
+            createdBy: localStorage.getItem("userName") || "",
           };
           params.questionType = "专项练习";
           params.publishTime = this.getTime();

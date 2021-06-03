@@ -144,6 +144,7 @@ export default {
         if (valid) {
           let params = {
             ...this.form,
+            createdBy: localStorage.getItem("userName") || "",
           };
           params.enrollmentType = "招生计划";
           params.publishTime = this.getTime();
