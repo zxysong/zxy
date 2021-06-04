@@ -17,9 +17,13 @@
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="coverPicUrl" label="封面" width="160">
+          <el-table-column prop="coverPicUrl" label="封面" width="200">
             <template slot-scope="scope">
-              <img :src="scope.row.coverPicUrl" alt="" />
+              <img
+                height="100px"
+                :src="`http://47.96.139.20${scope.row.coverPicUrl}`"
+                alt=""
+              />
             </template>
           </el-table-column>
           <el-table-column prop="description" label="描述" minWidth="120">
@@ -74,10 +78,6 @@
           :total="totals"
         >
         </el-pagination>
-        <img
-          src="http://47.96.139.20:8200/adult-exam/exam/myproject/image/exam/fa17f89d914c4f3b86083af395c5adc0.jpg"
-          alt=""
-        />
       </div>
     </div>
   </div>

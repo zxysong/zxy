@@ -31,7 +31,11 @@
                   :data="uploadData"
                   :headers="uploadData.token"
                 >
-                  <!-- <img v-if="coverPicUrl" :src="coverPicUrl" class="avatar" /> -->
+                  <img
+                    v-if="coverPicUrl"
+                    :src="`http://47.96.139.20${scope.row.coverPicUrl}`"
+                    class="avatar"
+                  />
                   <i
                     class="el-icon-plus avatar-uploader-icon"
                     @click="addpic"
@@ -122,6 +126,7 @@ export default {
       token: localStorage.getItem("token"),
     };
     this.form = Object.assign({}, this.form, this.addTestObj);
+    this.coverPicUrl = this.addTestObj.coverPicUrl;
     console.log(this.form);
   },
   methods: {
@@ -130,7 +135,7 @@ export default {
       if (list.length > 1) {
         list.shift();
       }
-      this.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.coverPicUrl = "";
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
     },
     beforeAvatarUpload() {},

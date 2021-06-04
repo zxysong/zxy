@@ -6,28 +6,88 @@
         <p class="left-tip">College Major</p>
       </div>
       <div class="right">
-        <div class="right-tab base-pointer active">招生院校</div>
-        <div class="right-tab base-pointer">招生专业</div>
-        <div class="right-tab base-pointer">招生计划</div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('ENROLLMENT_SCHOOL')"
+          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+        >
+          招生院校
+        </div>
+        <div
+          class="right-tab base-pointer"
+          :class="{ active: type === 'ENROLLMENT_PROFESSIONAL' }"
+          @click="tabChange('ENROLLMENT_PROFESSIONAL')"
+        >
+          招生专业
+        </div>
+        <div
+          class="right-tab base-pointer"
+          :class="{ active: type === 'ENROLLMENT_PLAN' }"
+          @click="tabChange('ENROLLMENT_PLAN')"
+        >
+          招生计划
+        </div>
       </div>
     </div>
     <div class="content">
-      <div v-for="item in 8" :key="item" class="item">
-        <img src="../../assets/imgs/4.png" alt="" />
-        <div class="plan">
-          <span>杭州电子科技大学</span>
-          <span class="arrow el-icon-arrow-right"></span>
+      <div v-for="item in tabList" :key="item.id" class="item">
+        <div class="content-item">
+          <img
+            height="120px"
+            :src="`http://47.96.139.20${item.coverPicUrl}`"
+            alt=""
+          />
+          <div class="plan">
+            <span>{{ item.enrollmentTitle }}</span>
+            <span class="arrow el-icon-arrow-right"></span>
+          </div>
+          <div class="time">{{ item.publishTime }}</div>
         </div>
-        <div class="time">2021.05.06</div>
       </div>
     </div>
-    <div class="more base-pointer">查看更多</div>
+    <div class="more base-pointer" @click="toDetaiiled">查看更多</div>
   </div>
 </template>
 <script>
+import { queryEnrollmentList } from "@/http";
 export default {
   data() {
-    return {};
+    return {
+      tabList: [],
+      type: "",
+    };
+  },
+  created() {
+    this.tabChange("ENROLLMENT_SCHOOL");
+  },
+  methods: {
+    async tabChange(enrollmentType) {
+      this.type = enrollmentType;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        enrollmentType,
+      };
+      let res = await queryEnrollmentList(p);
+      if (res.entry) {
+        this.tabList = res.entry;
+      }
+    },
+    toDetaiiled() {
+      if (this.type === "ENROLLMENT_SCHOOL") {
+        this.$router.push({
+          path: "/home/universities",
+        });
+      } else if (this.type === "ENROLLMENT_PROFESSIONAL") {
+        this.$router.push({
+          path: "/home/major",
+        });
+      } else if (this.type === "ENROLLMENT_PLAN") {
+        this.$router.push({
+          path: "/home/plan",
+        });
+      }
+    },
   },
 };
 </script>
@@ -49,7 +109,7 @@ export default {
     .left-tip {
       // padding-left: 40px;
       color: #aeaeae;
-       margin-top: 12px;
+      margin-top: 12px;
     }
   }
   .right {
@@ -68,13 +128,17 @@ export default {
 .content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
   padding: 64px;
   padding-bottom: 16px;
   .item {
-    width: 22%;
+    width: 25%;
     margin-bottom: 20px;
-    background: #fff;
+    // background: #fff;
+    .content-item {
+      margin: 0px 6%;
+      background: #fff;
+    }
     img {
       width: 100%;
     }

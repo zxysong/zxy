@@ -25,3 +25,13 @@ export const queryQuestionListByType = (p) => httpService.post(`/adult-exam/app/
 export const addQuestionInfo = (p) => httpService.post(`/adult-exam/admin/question/addQuestionInfo`, p);
 export const updateQuestionInfo = (p) => httpService.post(`/adult-exam/admin/question/updateQuestionInfo`, p);
 export const deleteQuestionInfo = (p) => httpService.delete(`/adult-exam/admin/question/deleteQuestionInfo`, p);
+
+
+
+export const querySlideshow = (p) => httpService.post(`/adult-exam/slideshow/app/querySlideshowThree`, p);
+export const addSlideshow = (p) => httpService.post(`/adult-exam/slideshow/admin/add`, p);
+export const editSlideshow = (p) => httpService.post(`/adult-exam/slideshow/admin/edit`, p);
+export const deleteSlideshow = (p) => httpService.delete(`/adult-exam/slideshow/admin/delete`, p);
+
+
+export const queryTutorongClass = (p) => httpService.get(`/adult-exam/app/tutorongClass/queryList`, p); // 查询辅导课堂

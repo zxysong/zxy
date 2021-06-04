@@ -12,17 +12,21 @@
           </el-table-column>
           <el-table-column
             prop="enrollmentTitle"
-            label="标题"
+            label="名称"
             width="150"
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="coverPicUrl" label="封面" width="160">
+          <el-table-column prop="coverPicUrl" label="缩略图" width="200">
             <template slot-scope="scope">
-              <img :src="scope.row.coverPicUrl" alt="" />
+              <img
+                height="100px"
+                :src="`http://47.96.139.20${scope.row.coverPicUrl}`"
+                alt=""
+              />
             </template>
           </el-table-column>
-          <el-table-column prop="description" label="描述" minWidth="120">
+          <el-table-column prop="description" label="说明" minWidth="120">
           </el-table-column>
           <el-table-column prop="context" label="动态内容" minWidth="120">
             <template slot-scope="scope">
@@ -74,16 +78,12 @@
           :total="totals"
         >
         </el-pagination>
-        <img
-          src="http://47.96.139.20:8200/adult-exam/exam/myproject/image/exam/fa17f89d914c4f3b86083af395c5adc0.jpg"
-          alt=""
-        />
       </div>
     </div>
   </div>
 </template>
 <script>
-import { queryEnrollmentList, deleteEnrollment } from "@/http";
+import { querySlideshow, deleteEnrollment } from "@/http";
 import { mapMutations } from "vuex";
 import mixins from "@/mixins/table";
 export default {
@@ -97,20 +97,19 @@ export default {
     this.queryList();
   },
   methods: {
-    ...mapMutations(["setAddTest", "clearAddTest"]),
+    ...mapMutations(["setAddPic", "clearAddPic"]),
     addtest() {
-      this.clearAddTest();
+      this.clearAddPic();
       this.$router.push({
-        path: "adminAddMajor",
+        path: "adminAddCcar",
       });
     },
     async queryList() {
       let p = {
-        enrollmentType: "ENROLLMENT_PROFESSIONAL",
         page: this.currentPage,
         pageSize: this.pageSize,
       };
-      let res = await queryEnrollmentList(p);
+      let res = await querySlideshow(p);
       this.totals = res.totalRecordSize || 0;
       this.tableData = res.entry || [];
     },
@@ -124,9 +123,9 @@ export default {
         });
     },
     handleEdit(row) {
-      this.setAddTest(row);
+      this.setAddPic(row);
       this.$router.push({
-        path: "adminAddMajor",
+        path: "adminAddCcar",
       });
     },
   },

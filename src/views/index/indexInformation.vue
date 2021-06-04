@@ -6,9 +6,27 @@
         <p class="left-tip">Upgrade Information</p>
       </div>
       <div class="right">
-        <div class="right-tab base-pointer active">热门推荐</div>
-        <div class="right-tab base-pointer">开课公告</div>
-        <div class="right-tab base-pointer">备考资讯</div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('HOT_RECOMMEND')"
+          :class="{ active: type === 'HOT_RECOMMEND' }"
+        >
+          热门推荐
+        </div>
+        <div
+          class="right-tab base-pointer"
+          :class="{ active: type === 'COURSE_ANNOUNCEMENT' }"
+          @click="tabChange('COURSE_ANNOUNCEMENT')"
+        >
+          开课公告
+        </div>
+        <div
+          class="right-tab base-pointer"
+          :class="{ active: type === 'PREPARE_FOR_INFORMATION' }"
+          @click="tabChange('PREPARE_FOR_INFORMATION')"
+        >
+          备考资讯
+        </div>
       </div>
     </div>
     <div class="content">
@@ -30,28 +48,66 @@
         </div>
       </div>
       <div class="right">
-        <div class="item base-pointer" v-for="(item, index) in 9" :key="item">
+        <div
+          class="item base-pointer"
+          v-for="(item, index) in tabList"
+          :key="item.id"
+        >
           <div>
             <span
               class="circle"
               :style="{ background: index > 2 ? '#757775' : '#ee7435' }"
-              >{{ "0" + item }}</span
+              >{{ `0${index + 1}` }}</span
             >
-            <span class="info over-hidden"
-              >浙江万里学院2021年“专升本”招生简章</span
-            >
+            <span class="info over-hidden">{{ item.title }}</span>
           </div>
-          <div class="info-time">2021.5.2</div>
+          <div class="info-time">{{ item.publishTime }}</div>
         </div>
-        <div class="more base-pointer">查看更多></div>
+        <div class="more base-pointer" @click="toDetaiiled">查看更多></div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { queryexamList } from "@/http";
 export default {
   data() {
-    return {};
+    return {
+      tabList: [],
+      type: "",
+    };
+  },
+  created() {
+    this.tabChange("HOT_RECOMMEND");
+  },
+  methods: {
+    async tabChange(examType) {
+      this.type = examType;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        examType,
+      };
+      let res = await queryexamList(p);
+      if (res.entry) {
+        this.tabList = res.entry;
+      }
+    },
+    toDetaiiled() {
+      if (this.type === "HOT_RECOMMEND") {
+        this.$router.push({
+          path: "/home/hot",
+        });
+      } else if (this.type === "COURSE_ANNOUNCEMENT") {
+        this.$router.push({
+          path: "/home/notice",
+        });
+      } else if (this.type === "PREPARE_FOR_INFORMATION") {
+        this.$router.push({
+          path: "/home/preparation",
+        });
+      }
+    },
   },
 };
 </script>
@@ -70,7 +126,7 @@ export default {
     .left-tip {
       // padding-left: 40px;
       color: #aeaeae;
-       margin-top: 12px;
+      margin-top: 12px;
     }
   }
   .right {

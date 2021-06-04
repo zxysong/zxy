@@ -6,27 +6,91 @@
         <p class="left-tip">Latest Test Questions</p>
       </div>
       <div class="right">
-        <div class="right-tab base-pointer active">高等数学</div>
-        <div class="right-tab base-pointer">大学语文</div>
-        <div class="right-tab base-pointer">大学英语</div>
-        <div class="right-tab base-pointer">历年真题</div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('ENROLLMENT_SCHOOL')"
+          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+        >
+          高等数学
+        </div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('ENROLLMENT_SCHOOL')"
+          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+        >
+          大学语文
+        </div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('ENROLLMENT_SCHOOL')"
+          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+        >
+          大学英语
+        </div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('ENROLLMENT_SCHOOL')"
+          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+        >
+          历年真题
+        </div>
       </div>
     </div>
     <div class="content">
-      <div v-for="item in 8" :key="item" class="item">
+      <div v-for="item in tabList" :key="item.id" class="item">
         <div style="padding: 20px">
-          <img src="../../assets/imgs/3.png" alt="" />
+          <img
+            height="120px"
+            :src="`http://47.96.139.20${item.coverPicUrl}`"
+            alt=""
+          />
         </div>
-        <div class="plan">浙江专升本高等数学</div>
-        <div class="time">选择题（一）</div>
+        <div class="plan">{{ item.previousTitle }}</div>
+        <div class="time">{{ item.description }}</div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { queryQuestionListByType } from "@/http";
 export default {
   data() {
-    return {};
+    return {
+      tabList: [],
+      type: "",
+    };
+  },
+  created() {
+    this.tabChange("ENROLLMENT_SCHOOL");
+  },
+  methods: {
+    async tabChange(enrollmentType) {
+      this.type = enrollmentType;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        questionType: "专项练习",
+      };
+      let res = await queryQuestionListByType(p);
+      if (res.entry) {
+        this.tabList = res.entry;
+      }
+    },
+    toDetaiiled() {
+      if (this.type === "ENROLLMENT_SCHOOL") {
+        this.$router.push({
+          path: "/home/universities",
+        });
+      } else if (this.type === "ENROLLMENT_PROFESSIONAL") {
+        this.$router.push({
+          path: "/home/major",
+        });
+      } else if (this.type === "ENROLLMENT_PLAN") {
+        this.$router.push({
+          path: "/home/plan",
+        });
+      }
+    },
   },
 };
 </script>
@@ -48,7 +112,7 @@ export default {
     .left-tip {
       // padding-left: 40px;
       color: #aeaeae;
-       margin-top: 12px;
+      margin-top: 12px;
     }
   }
   .right {

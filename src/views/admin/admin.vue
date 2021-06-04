@@ -25,7 +25,7 @@
             @open="handleOpen"
             @close="handleClose"
           >
-            <el-submenu index="admintest">
+            <el-submenu index="admin">
               <template slot="title">
                 <span>资讯管理</span>
               </template>
@@ -36,10 +36,8 @@
                 <el-menu-item index="adminmajor">招生专业</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
-            <el-menu-item index="admincar">
-              <span slot="title">轮播图管理</span>
-            </el-menu-item>
-            <el-submenu index="adminmajortest">
+            <el-menu-item index="admincar">轮播图管理</el-menu-item>
+            <el-submenu index="admin">
               <template slot="title">
                 <span>试题管理</span>
               </template>

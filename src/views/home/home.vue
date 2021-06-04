@@ -22,19 +22,29 @@
           <el-dropdown>
             <div>专升本资讯</div>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="goDetailed('hot')"
+              <el-dropdown-item
+                @click.native="goDetailed('hot')"
+                :class="{ active: $route.path.includes('hot') }"
                 >热门推荐</el-dropdown-item
               >
-              <el-dropdown-item @click.native="goDetailed('notice')"
+              <el-dropdown-item
+                @click.native="goDetailed('notice')"
+                :class="{ active: $route.path.includes('notice') }"
                 >开课公告</el-dropdown-item
               >
-              <el-dropdown-item @click.native="goDetailed('preparation')"
+              <el-dropdown-item
+                @click.native="goDetailed('preparation')"
+                :class="{ active: $route.path.includes('preparation') }"
                 >备考咨讯</el-dropdown-item
               >
-              <el-dropdown-item @click.native="goDetailed('plan')"
+              <el-dropdown-item
+                @click.native="goDetailed('plan')"
+                :class="{ active: $route.path.includes('plan') }"
                 >招生计划</el-dropdown-item
               >
-              <el-dropdown-item @click.native="goDetailed('universities')"
+              <el-dropdown-item
+                @click.native="goDetailed('universities')"
+                :class="{ active: $route.path.includes('universities') }"
                 >招生院校</el-dropdown-item
               >
               <el-dropdown-item @click.native="goDetailed('major')"
@@ -130,7 +140,7 @@ export default {
   }
 }
 .active {
-  color: #51a3f6;
+  color: #51a3f6 !important;
 }
 .height {
   height: 21px;

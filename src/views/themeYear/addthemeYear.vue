@@ -83,7 +83,10 @@
                   :data="uploadData"
                   :headers="uploadData.token"
                 >
-                  <!-- <img v-if="coverPicUrl" :src="coverPicUrl" class="avatar" /> -->
+                  <img
+                    src="http://47.96.139.20/slideshow/e835ca82cdc547658052ef3b4fc5e9af.jpg"
+                    class="avatar"
+                  />
                   <i
                     class="el-icon-plus avatar-uploader-icon"
                     @click="addpic"

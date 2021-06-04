@@ -21,6 +21,12 @@ export default new Vuex.Store({
       contextPicUrl: "",
       description: "",
       subjectType: "",
+    },
+    picLunObj: {
+      slideshowTitle: "",
+      slideshowPicUrl: "",
+      description: "",
+      slideshowPicLink: "",
     }
   },
   mutations: {
@@ -41,6 +47,18 @@ export default new Vuex.Store({
     },
     clearAddQuestion(state) {
       state.addQuestionObj = Object.assign({}, {
+        previousTitle: "",
+        coverPicUrl: "",
+        contextPicUrl: "",
+        description: "",
+        subjectType: "",
+      })
+    },
+    setAddPic(state, data) {
+      state.picLunObj = Object.assign({}, state.picLunObj, data)
+    },
+    clearAddPic(state) {
+      state.picLunObj = Object.assign({}, {
         previousTitle: "",
         coverPicUrl: "",
         contextPicUrl: "",

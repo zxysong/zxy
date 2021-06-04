@@ -10,15 +10,15 @@
         <el-form label-width="120px" :model="form" ref="form" :rules="rules">
           <el-row :gutter="20">
             <el-col :span="8"
-              ><el-form-item label="轮播图名称" prop="enrollmentTitle">
+              ><el-form-item label="轮播图名称" prop="slideshowTitle">
                 <el-input
-                  v-model="form.enrollmentTitle"
+                  v-model="form.slideshowTitle"
                 ></el-input> </el-form-item
             ></el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="16"
-              ><el-form-item label="轮播图素材" prop="coverPicUrl">
+              ><el-form-item label="轮播图素材" prop="slideshowPicUrl">
                 <el-upload
                   class="avatar-uploader"
                   action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
@@ -31,7 +31,11 @@
                   :data="uploadData"
                   :headers="uploadData.token"
                 >
-                  <!-- <img v-if="coverPicUrl" :src="coverPicUrl" class="avatar" /> -->
+                  <img
+                    v-if="slideshowPicUrl"
+                    :src="`http://47.96.139.20${scope.row.slideshowPicUrl}`"
+                    class="avatar"
+                  />
                   <i
                     class="el-icon-plus avatar-uploader-icon"
                     @click="addpic"
@@ -53,8 +57,8 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="16"
-              ><el-form-item label="轮播图链接" prop="context">
-                <el-input v-model="form.context"></el-input>
+              ><el-form-item label="轮播图链接" prop="slideshowPicLink">
+                <el-input v-model="form.slideshowPicLink"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -73,14 +77,14 @@
   </div>
 </template>
 <script>
-import { addEnrollment, editEnrollment, pictureShow } from "@/http";
+import { addSlideshow, editEnrollment, pictureShow } from "@/http";
 import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
       touterList: [{ name: "轮播图" }, { name: "添加轮播图" }],
       typeOptions: ["热门推荐", "开课公告", "备考资讯"],
-      coverPicUrl: "",
+      slideshowPicUrl: "",
       uploadData: {
         code: "exam",
         token: {
@@ -88,22 +92,22 @@ export default {
         },
       },
       form: {
-        enrollmentTitle: "",
-        coverPicUrl: "",
+        slideshowTitle: "",
+        slideshowPicUrl: "",
         description: "",
-        context: "",
+        slideshowPicLink: "",
       },
       rules: {
-        enrollmentTitle: [
+        slideshowTitle: [
           { required: true, message: "请输入动态标题", trigger: "blur" },
         ],
-        coverPicUrl: [
+        slideshowPicUrl: [
           { required: true, message: "请上传图片", trigger: "blur" },
         ],
         description: [
           { required: true, message: "请输入动态描述", trigger: "blur" },
         ],
-        context: [
+        slideshowPicLink: [
           { required: true, message: "请输入动态内容", trigger: "blur" },
         ],
       },
@@ -113,22 +117,22 @@ export default {
     this.uploadData.token = {
       token: localStorage.getItem("token"),
     };
-    this.form = Object.assign({}, this.form, this.addTestObj);
-    console.log(this.form);
+    this.form = Object.assign({}, this.form, this.picLunObj);
+    this.slideshowPicUrl = this.picLunObj.slideshowPicUrl;
   },
   methods: {
-    ...mapMutations(["clearAddTest"]),
+    ...mapMutations(["clearAddPic"]),
     handleAvatarSuccess(response, file, list) {
       if (list.length > 1) {
         list.shift();
       }
-      this.coverPicUrl = response?.entry?.fileNameNew || "";
-      this.form.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.slideshowPicUrl = "";
+      this.form.slideshowPicUrl = response?.entry?.fileNameNew || "";
     },
     beforeAvatarUpload() {},
     addpic() {},
     back() {
-      this.clearAddTest();
+      this.clearAddPic();
       this.$router.back();
     },
     addtest() {
@@ -143,16 +147,16 @@ export default {
           if (params.id) {
             res = await editEnrollment(params);
           } else {
-            res = await addEnrollment(params);
+            res = await addSlideshow(params);
           }
-          this.clearAddTest();
+          this.clearAddPic();
           if (res.status === true) {
             this.$message({
               message: "操作成功",
               type: "success",
             });
             this.$router.push({
-              path: "adminmajor",
+              path: "admincar",
             });
           }
         } else {
@@ -164,14 +168,6 @@ export default {
         }
       });
     },
-    picShow(url) {
-      pictureShow({ fileName: url }).then((res) => {
-        // this.form.coverPicUrl = res;
-        // let obj = {
-        //   url: res,
-        // };
-      });
-    },
     getTime() {
       let data = new Date();
       let y = data.getFullYear();
@@ -181,7 +177,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["addTestObj"]),
+    ...mapState(["picLunObj"]),
   },
 };
 </script>

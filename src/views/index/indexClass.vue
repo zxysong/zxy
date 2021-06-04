@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+import { queryTutorongClass } from "@/http";
 export default {
   data() {
     return {
@@ -44,6 +45,38 @@ export default {
       ],
       headList2: ["学习阶段2", "教学安排2", "授课方式2", "备注2", "咨询报名2"],
     };
+  },
+  created() {
+    this.tabChange("ENROLLMENT_SCHOOL");
+  },
+  methods: {
+    async tabChange(enrollmentType) {
+      this.type = enrollmentType;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        // enrollmentType,
+      };
+      let res = await queryTutorongClass(p);
+      if (res.entry) {
+        this.tabList = res.entry;
+      }
+    },
+    toDetaiiled() {
+      if (this.type === "ENROLLMENT_SCHOOL") {
+        this.$router.push({
+          path: "/home/universities",
+        });
+      } else if (this.type === "ENROLLMENT_PROFESSIONAL") {
+        this.$router.push({
+          path: "/home/major",
+        });
+      } else if (this.type === "ENROLLMENT_PLAN") {
+        this.$router.push({
+          path: "/home/plan",
+        });
+      }
+    },
   },
 };
 </script>
@@ -62,7 +95,7 @@ export default {
     .left-tip {
       // padding-left: 40px;
       color: #aeaeae;
-       margin-top: 12px;
+      margin-top: 12px;
     }
   }
   .right {

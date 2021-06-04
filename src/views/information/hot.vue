@@ -4,18 +4,22 @@
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
       <div class="hot">考试动态——热门推荐</div>
-      <div v-for="item in 10" :key="item" class="item">
+      <div v-for="item in tableData" :key="item.id" class="item">
         <div class="left">
-          我是内容我是内容关于浙江司越专升本课程价格调整的通知
+          {{ item.title }}
         </div>
-        <div class="right">2021年5月2日</div>
+        <div class="right">{{ item.publishTime }}</div>
       </div>
     </div>
     <el-pagination
       background
-      layout="prev, pager, next"
-      :total="1000"
+      layout="total,prev, pager, next"
       class="pagination"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[10, 50, 100, 200]"
+      :page-size="pageSize"
+      :total="totals"
     >
     </el-pagination>
   </div>
@@ -23,7 +27,8 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import tableMethods from "@/mixins/table.js";
+import tableMethods from "@/mixins/table";
+import { queryexamList } from "@/http";
 export default {
   mixins: [tableMethods],
   data() {
@@ -32,11 +37,27 @@ export default {
         title: "专升本资讯",
         enTitle: "Upgrade Information",
       },
+      pageSize: 10,
     };
   },
   components: {
     baseCarousel,
     baseTitle,
+  },
+  created() {
+    this.queryList();
+  },
+  methods: {
+    async queryList() {
+      let p = {
+        examType: "HOT_RECOMMEND",
+        page: this.currentPage,
+        pageSize: this.pageSize,
+      };
+      let res = await queryexamList(p);
+      this.totals = res.totalRecordSize || 0;
+      this.tableData = res.entry || [];
+    },
   },
 };
 </script>
