@@ -1,8 +1,8 @@
 <template>
   <div class="content-wrap">
-    <base-carousel></base-carousel>
+    <base-carousel :imgs="imgs"></base-carousel>
     <base-title :title-left="titleLeft"></base-title>
-     <div class="content">
+    <div class="content">
       <div class="hot">专项练习</div>
       <div v-for="item in 10" :key="item" class="item">
         <div class="left">
@@ -23,6 +23,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
+import { querySlideshow } from "@/http";
 export default {
   components: {
     baseCarousel,
@@ -34,15 +35,21 @@ export default {
         title: "试题中心",
         enTitle: "Test center",
       },
-    }
+      imgs: [],
+    };
   },
   created() {
-    
+    this.queryListPic();
   },
   methods: {
-    
+    async queryListPic() {
+      let res = await querySlideshow({});
+      if (rs.entry) {
+        this.imgs = res.entry;
+      }
+    },
   },
-}
+};
 </script>
 <style lang="less" scoped>
 .content {

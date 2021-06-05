@@ -50,7 +50,7 @@
                 >
                   <img
                     v-if="coverPicUrl"
-                    :src="`http://47.96.139.20${scope.row.coverPicUrl}`"
+                    :src="`http://47.96.139.20${coverPicUrl}`"
                     class="avatar"
                   />
                   <i
@@ -89,7 +89,7 @@
                 >
                   <img
                     v-if="contextPicUrl"
-                    :src="`http://47.96.139.20${scope.row.contextPicUrl}`"
+                    :src="`http://47.96.139.20${contextPicUrl}`"
                     class="avatar"
                   />
                   <i

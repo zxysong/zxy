@@ -27,8 +27,8 @@ export const updateQuestionInfo = (p) => httpService.post(`/adult-exam/admin/que
 export const deleteQuestionInfo = (p) => httpService.delete(`/adult-exam/admin/question/deleteQuestionInfo`, p);
 
 
-
-export const querySlideshow = (p) => httpService.post(`/adult-exam/slideshow/app/querySlideshowThree`, p);
+export const querySlideshowList = (p) => httpService.get(`/adult-exam/slideshow/app/querySlideshowList`, p);
+export const querySlideshow = (p) => httpService.get(`/adult-exam/slideshow/app/querySlideshowThree`, p);
 export const addSlideshow = (p) => httpService.post(`/adult-exam/slideshow/admin/add`, p);
 export const editSlideshow = (p) => httpService.post(`/adult-exam/slideshow/admin/edit`, p);
 export const deleteSlideshow = (p) => httpService.delete(`/adult-exam/slideshow/admin/delete`, p);

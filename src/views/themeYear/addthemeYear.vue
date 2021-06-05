@@ -49,6 +49,11 @@
                   :headers="uploadData.token"
                 >
                   <!-- <img v-if="coverPicUrl" :src="coverPicUrl" class="avatar" /> -->
+                  <img
+                    v-if="coverPicUrl"
+                    :src="`http://47.96.139.20${coverPicUrl}`"
+                    class="avatar"
+                  />
                   <i
                     class="el-icon-plus avatar-uploader-icon"
                     @click="addpic"
@@ -84,7 +89,8 @@
                   :headers="uploadData.token"
                 >
                   <img
-                    src="http://47.96.139.20/slideshow/e835ca82cdc547658052ef3b4fc5e9af.jpg"
+                    v-if="contextPicUrl"
+                    :src="`http://47.96.139.20${contextPicUrl}`"
                     class="avatar"
                   />
                   <i
@@ -164,6 +170,8 @@ export default {
       token: localStorage.getItem("token"),
     };
     this.form = Object.assign({}, this.form, this.addQuestionObj);
+    this.coverPicUrl = this.addQuestionObj.coverPicUrl;
+    this.contextPicUrl = this.addQuestionObj.contextPicUrl;
     console.log(this.form);
   },
   methods: {
@@ -172,14 +180,14 @@ export default {
       if (list.length > 1) {
         list.shift();
       }
-      this.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.coverPicUrl = "";
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
     },
     handleAvatarSuccess1(response, file, list) {
       if (list.length > 1) {
         list.shift();
       }
-      this.contextPicUrl = response?.entry?.fileNameNew || "";
+      this.contextPicUrl = "";
       this.form.contextPicUrl = response?.entry?.fileNameNew || "";
     },
     beforeAvatarUpload() {},

@@ -1,9 +1,9 @@
 <template>
   <div class="page-wrap">
-    <base-carousel></base-carousel>
+    <base-carousel :imgs="imgs"></base-carousel>
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
-      <div class="course-wrap mb36" >
+      <div class="course-wrap mb36">
         <div class="title">
           <span class="course-title">全日制协议班</span>
         </div>
@@ -23,14 +23,14 @@
 
           <tr v-for="(item, index) in agreementList" :key="index">
             <td>{{ item.learningStage }}</td>
-             <td>{{ item.teachingArrangement }}</td>
-               <td>{{ item.learningStage }}</td>
-                 <td>{{ item.remarks }}</td>
-                   <td>{{ item.consult }}</td>
+            <td>{{ item.teachingArrangement }}</td>
+            <td>{{ item.learningStage }}</td>
+            <td>{{ item.remarks }}</td>
+            <td>{{ item.consult }}</td>
           </tr>
         </table>
       </div>
-      <div class="course-wrap mb36" >
+      <div class="course-wrap mb36">
         <div class="title">
           <span class="course-title">全日制协议班</span>
         </div>
@@ -50,14 +50,14 @@
 
           <tr v-for="(item, index) in agreementList" :key="index">
             <td>{{ item.learningStage }}</td>
-             <td>{{ item.teachingArrangement }}</td>
-               <td>{{ item.learningStage }}</td>
-                 <td>{{ item.remarks }}</td>
-                   <td>{{ item.consult }}</td>
+            <td>{{ item.teachingArrangement }}</td>
+            <td>{{ item.learningStage }}</td>
+            <td>{{ item.remarks }}</td>
+            <td>{{ item.consult }}</td>
           </tr>
         </table>
       </div>
-      <div class="course-wrap mb36" >
+      <div class="course-wrap mb36">
         <div class="title">
           <span class="course-title">全日制协议班</span>
         </div>
@@ -77,10 +77,10 @@
 
           <tr v-for="(item, index) in agreementList" :key="index">
             <td>{{ item.learningStage }}</td>
-             <td>{{ item.teachingArrangement }}</td>
-               <td>{{ item.learningStage }}</td>
-                 <td>{{ item.remarks }}</td>
-                   <td>{{ item.consult }}</td>
+            <td>{{ item.teachingArrangement }}</td>
+            <td>{{ item.learningStage }}</td>
+            <td>{{ item.remarks }}</td>
+            <td>{{ item.consult }}</td>
           </tr>
         </table>
       </div>
@@ -90,6 +90,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
+import { querySlideshow } from "@/http";
 export default {
   components: {
     baseCarousel,
@@ -111,16 +112,26 @@ export default {
 4、寒假封闭面授上课半个月基础巩固； \n
 5、暑期集中培训一个月强化巩固，并摸底考核；  \n
 6、课外随时预约一对一个性化答疑； \n
-7、网络课程全学年随时随地官网在线听课。`,  
+7、网络课程全学年随时随地官网在线听课。`,
           teachingMethods: "面授",
           remarks: "无",
           consult: "0571-81955565",
         },
       ],
+      imgs: [],
     };
   },
-  created() {},
-  methods: {},
+  created() {
+    this.queryListPic();
+  },
+  methods: {
+    async queryListPic() {
+      let res = await querySlideshow({});
+      if (res.entry) {
+        this.imgs = res.entry;
+      }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -160,7 +171,7 @@ export default {
       th {
         color: rgba(83, 85, 83, 100);
         font-size: 16px;
-        
+
         font-family: Microsoft Yahei;
         padding: 16px 0;
       }
@@ -171,7 +182,7 @@ export default {
       }
       tr {
         td:nth-child(2) {
-           text-align: left;   
+          text-align: left;
         }
       }
     }

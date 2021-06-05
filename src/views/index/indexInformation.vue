@@ -91,6 +91,8 @@ export default {
       let res = await queryexamList(p);
       if (res.entry) {
         this.tabList = res.entry;
+      } else {
+        this.tabList = [];
       }
     },
     toDetaiiled() {

@@ -71,6 +71,8 @@ export default {
       let res = await queryEnrollmentList(p);
       if (res.entry) {
         this.tabList = res.entry;
+      } else {
+        this.tabList = [];
       }
     },
     toDetaiiled() {

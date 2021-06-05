@@ -33,7 +33,7 @@
                 >
                   <img
                     v-if="slideshowPicUrl"
-                    :src="`http://47.96.139.20${scope.row.slideshowPicUrl}`"
+                    :src="`http://47.96.139.20${slideshowPicUrl}`"
                     class="avatar"
                   />
                   <i
@@ -77,7 +77,7 @@
   </div>
 </template>
 <script>
-import { addSlideshow, editEnrollment, pictureShow } from "@/http";
+import { addSlideshow, editSlideshow, pictureShow } from "@/http";
 import { mapState, mapMutations } from "vuex";
 export default {
   data() {
@@ -140,12 +140,13 @@ export default {
         if (valid) {
           let params = {
             ...this.form,
+            createdBy: localStorage.getItem("userName") || "",
           };
-          params.enrollmentType = "招生专业";
+          // params.enrollmentType = "招生专业";
           params.publishTime = this.getTime();
           let res;
           if (params.id) {
-            res = await editEnrollment(params);
+            res = await editSlideshow(params);
           } else {
             res = await addSlideshow(params);
           }

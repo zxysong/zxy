@@ -11,58 +11,66 @@
           <el-table-column type="index" label="序号" width="50" align="center">
           </el-table-column>
           <el-table-column
-            prop="enrollmentTitle"
+            prop="slideshowTitle"
             label="名称"
             width="150"
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="coverPicUrl" label="缩略图" width="200">
+          <el-table-column prop="slideshowPicUrl" label="缩略图" width="200">
             <template slot-scope="scope">
               <img
                 height="100px"
-                :src="`http://47.96.139.20${scope.row.coverPicUrl}`"
+                :src="`http://47.96.139.20${scope.row.slideshowPicUrl}`"
                 alt=""
               />
             </template>
           </el-table-column>
           <el-table-column prop="description" label="说明" minWidth="120">
           </el-table-column>
-          <el-table-column prop="context" label="动态内容" minWidth="120">
-            <template slot-scope="scope">
+          <el-table-column
+            prop="slideshowPicLink"
+            label="动态内容"
+            minWidth="120"
+          >
+            <!-- <template slot-scope="scope">
               <el-popover
                 trigger="hover"
                 placement="top"
                 width="800"
                 class="popper-class"
               >
-                <p>{{ scope.row.context }}</p>
+                <p>{{ scope.row.slideshowPicLink }}</p>
                 <div slot="reference" class="name-wrapper">
                   <p style="width: 100%; height: 100px">
                     {{ scope.row.context }}
                   </p>
                 </div>
               </el-popover>
-            </template>
+            </template> -->
           </el-table-column>
-          <el-table-column prop="publishTime" label="时间" width="160">
+          <el-table-column prop="createdBy" label="上传人" width="120">
           </el-table-column>
+          <!-- <el-table-column prop="publishTime" label="时间" width="160">
+          </el-table-column> -->
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
-              <el-button
-                @click="handleEdit(scope.row)"
-                type="text"
-                size="small"
-                class="edit-btn"
-                >编辑</el-button
-              >
-              <el-button
-                @click="handledelete(scope.row)"
-                type="text"
-                size="small"
-                class="delete-btn"
-                >删除</el-button
-              >
+              <div style="display: flex">
+                <el-button
+                  @click="handleEdit(scope.row)"
+                  type="text"
+                  size="small"
+                  class="edit-btn"
+                  >编辑</el-button
+                >
+                <el-button
+                  @click="handledelete(scope.row)"
+                  type="text"
+                  size="small"
+                  class="delete-btn"
+                  >删除</el-button
+                >
+              </div>
             </template>
           </el-table-column>
         </el-table>
@@ -83,7 +91,7 @@
   </div>
 </template>
 <script>
-import { querySlideshow, deleteEnrollment } from "@/http";
+import { querySlideshowList, deleteSlideshow } from "@/http";
 import { mapMutations } from "vuex";
 import mixins from "@/mixins/table";
 export default {
@@ -109,12 +117,12 @@ export default {
         page: this.currentPage,
         pageSize: this.pageSize,
       };
-      let res = await querySlideshow(p);
+      let res = await querySlideshowList(p);
       this.totals = res.totalRecordSize || 0;
       this.tableData = res.entry || [];
     },
     handledelete(row) {
-      deleteEnrollment({ ids: row.id })
+      deleteSlideshow({ ids: row.id })
         .then((res) => {
           console.log(res);
         })
@@ -123,6 +131,7 @@ export default {
         });
     },
     handleEdit(row) {
+      console.log(row);
       this.setAddPic(row);
       this.$router.push({
         path: "adminAddCcar",

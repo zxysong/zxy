@@ -6,27 +6,51 @@
         <p class="left-tip">Tutoring Class</p>
       </div>
       <div class="right">
-        <div class="right-tab base-pointer active">全日制协议班</div>
-        <div class="right-tab base-pointer">至尊VIP保过班</div>
-        <div class="right-tab base-pointer">SVIP保过班</div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('追光计划')"
+          :class="{ active: type === '追光计划' }"
+        >
+          追光计划
+        </div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('巅峰计划X')"
+          :class="{ active: type === '巅峰计划X' }"
+        >
+          巅峰计划X
+        </div>
+        <div
+          class="right-tab base-pointer"
+          @click="tabChange('蝶变计划')"
+          :class="{ active: type === '蝶变计划' }"
+        >
+          蝶变计划A&B
+        </div>
       </div>
     </div>
     <div class="content">
-      <div v-for="item in headList" :key="item" class="item">
-        {{ item }}
-      </div>
-      <div v-for="(item, index) in headList1" :key="index" class="item">
-        <template v-if="item.children">
-          <div v-for="o in item.children" :key="o" class="color">
-            {{ o }}
-          </div>
-        </template>
-
-        <div v-if="item.name" class="color">{{ item.name }}</div>
-      </div>
-      <div v-for="item in headList2" :key="item" class="item">
-        {{ item }}
-      </div>
+      <el-table :data="tabList" border style="width: 100%">
+        <el-table-column
+          prop="studyStage"
+          label="学习阶段"
+          width="150"
+          align="center"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="teachingArrangement"
+          label="教学安排"
+          minWidth="200"
+        >
+        </el-table-column>
+        <el-table-column prop="teachingMethod" label="授课方式" width="160">
+        </el-table-column>
+        <el-table-column prop="remark" label="备注" width="160">
+        </el-table-column>
+        <el-table-column prop="telephone" label="咨询报名" width="160">
+        </el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
@@ -35,46 +59,26 @@ import { queryTutorongClass } from "@/http";
 export default {
   data() {
     return {
-      headList: ["学习阶段", "教学安排", "授课方式", "备注", "咨询报名"],
-      headList1: [
-        { name: "学习阶段1" },
-        { children: ["111111", "2222", "33333"] },
-        { name: "授课方式1" },
-        { name: "备注1" },
-        { name: "咨询报名1" },
-      ],
-      headList2: ["学习阶段2", "教学安排2", "授课方式2", "备注2", "咨询报名2"],
+      type: "",
+      tabList: [],
     };
   },
   created() {
-    this.tabChange("ENROLLMENT_SCHOOL");
+    this.tabChange("追光计划");
   },
   methods: {
-    async tabChange(enrollmentType) {
-      this.type = enrollmentType;
+    async tabChange(className) {
+      this.type = className;
       let p = {
         page: 1,
         pageSize: 10,
-        // enrollmentType,
+        className,
       };
       let res = await queryTutorongClass(p);
       if (res.entry) {
         this.tabList = res.entry;
-      }
-    },
-    toDetaiiled() {
-      if (this.type === "ENROLLMENT_SCHOOL") {
-        this.$router.push({
-          path: "/home/universities",
-        });
-      } else if (this.type === "ENROLLMENT_PROFESSIONAL") {
-        this.$router.push({
-          path: "/home/major",
-        });
-      } else if (this.type === "ENROLLMENT_PLAN") {
-        this.$router.push({
-          path: "/home/plan",
-        });
+      } else {
+        this.tabList = [];
       }
     },
   },

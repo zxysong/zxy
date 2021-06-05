@@ -1,6 +1,6 @@
 <template>
   <div>
-    <base-carousel></base-carousel>
+    <base-carousel :imgs="imgs"></base-carousel>
     <index-information></index-information>
     <index-major></index-major>
     <index-class></index-class>
@@ -15,6 +15,7 @@ import indexMajor from "./indexMajor";
 import indexClass from "./indexClass";
 import indexRec from "./indexRec";
 import indexQuestions from "./indexQuestions";
+import { querySlideshow } from "@/http";
 export default {
   components: {
     baseCarousel,
@@ -23,6 +24,22 @@ export default {
     indexClass,
     indexRec,
     indexQuestions,
+  },
+  data() {
+    return {
+      imgs: [],
+    };
+  },
+  created() {
+    this.queryList();
+  },
+  methods: {
+    async queryList() {
+      let res = await querySlideshow({});
+      if (res.entry) {
+        this.imgs = res.entry;
+      }
+    },
   },
 };
 </script>

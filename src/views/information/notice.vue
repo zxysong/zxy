@@ -1,6 +1,6 @@
 <template>
   <div>
-    <base-carousel></base-carousel>
+    <base-carousel :imgs="imgs"></base-carousel>
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
       <div class="hot">考试动态——开课公告</div>
@@ -27,7 +27,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import { queryexamList } from "@/http";
+import { queryexamList, querySlideshow } from "@/http";
 import tableMethods from "@/mixins/table";
 export default {
   mixins: [tableMethods],
@@ -38,6 +38,7 @@ export default {
         enTitle: "Upgrade Information",
       },
       pageSize: 10,
+      imgs: [],
     };
   },
   components: {
@@ -46,8 +47,15 @@ export default {
   },
   created() {
     this.queryList();
+    this.queryListPic();
   },
   methods: {
+    async queryListPic() {
+      let res = await querySlideshow({});
+      if (res.entry) {
+        this.imgs = res.entry;
+      }
+    },
     async queryList() {
       let p = {
         examType: "COURSE_ANNOUNCEMENT",

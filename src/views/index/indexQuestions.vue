@@ -8,29 +8,29 @@
       <div class="right">
         <div
           class="right-tab base-pointer"
-          @click="tabChange('ENROLLMENT_SCHOOL')"
-          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+          @click="tabChange('高等数学')"
+          :class="{ active: type === '高等数学' }"
         >
           高等数学
         </div>
         <div
           class="right-tab base-pointer"
-          @click="tabChange('ENROLLMENT_SCHOOL')"
-          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+          @click="tabChange('大学语文')"
+          :class="{ active: type === '大学语文' }"
         >
           大学语文
         </div>
         <div
           class="right-tab base-pointer"
-          @click="tabChange('ENROLLMENT_SCHOOL')"
-          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+          @click="tabChange('大学英语')"
+          :class="{ active: type === '大学英语' }"
         >
           大学英语
         </div>
         <div
           class="right-tab base-pointer"
-          @click="tabChange('ENROLLMENT_SCHOOL')"
-          :class="{ active: type === 'ENROLLMENT_SCHOOL' }"
+          @click="tabChange1('历年真题')"
+          :class="{ active: type === '历年真题' }"
         >
           历年真题
         </div>
@@ -61,19 +61,36 @@ export default {
     };
   },
   created() {
-    this.tabChange("ENROLLMENT_SCHOOL");
+    this.tabChange("高等数学");
   },
   methods: {
-    async tabChange(enrollmentType) {
-      this.type = enrollmentType;
+    async tabChange(subjectType) {
+      this.type = subjectType;
       let p = {
         page: 1,
         pageSize: 10,
         questionType: "专项练习",
+        subjectType,
       };
       let res = await queryQuestionListByType(p);
       if (res.entry) {
         this.tabList = res.entry;
+      } else {
+        this.tabList = [];
+      }
+    },
+    async tabChange1(questionType) {
+      this.type = questionType;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        questionType: "历年真题",
+      };
+      let res = await queryQuestionListByType(p);
+      if (res.entry) {
+        this.tabList = res.entry;
+      } else {
+        this.tabList = [];
       }
     },
     toDetaiiled() {
@@ -118,6 +135,7 @@ export default {
   .right {
     width: 50%;
     padding-top: 66px;
+    text-align: right;
     .right-tab {
       display: inline-block;
       width: 25%;

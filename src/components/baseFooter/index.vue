@@ -13,12 +13,12 @@
     </div>
     <div class="item">
       <div>辅导课堂</div>
-      <p class="mr-30 base-pointer">全日制协议班</p>
-      <p class="mr-30 base-pointer">至尊vip保过班</p>
-      <p class="mr-30 base-pointer">SVIP保过班</p>
+      <p class="mr-30 base-pointer">追光计划</p>
+      <p class="mr-30 base-pointer">巅峰计划X</p>
+      <p class="mr-30 base-pointer">蝶变计划A&B</p>
     </div>
     <div class="item">
-      <div>试题下载</div>
+      <div>试题中心</div>
       <p class="mr-30 base-pointer">高等数学</p>
       <p class="mr-30 base-pointer">大学英语</p>
       <p class="mr-30 base-pointer">大学语文</p>
