@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrap personalizedEvaluation-wrap">
-    <div class="hear-wrap">司越专升本智能测试在线评估——高等数学</div>
+    <div class="hear-wrap">司越专升本智能测试在线评估——{{ title }}</div>
     <div class="subject-wrap">
       <!-- <div class="subject-title">2.你的年龄是： （单选）</div>
       <div class="subject-content">
@@ -26,11 +26,18 @@
     </div>
     <div class="operation-wrap">
       <div class="prev" @click="prev">上一题</div>
-      <div class="next" @click="next">下一题</div>
+      <div
+        class="next"
+        @click="next"
+        v-if="currentIndex < this.questions.length - 1"
+      >
+        下一题
+      </div>
+      <div class="next" @click="handInThePapers" v-else>交卷</div>
     </div>
-    <div class="operation-wrap">
+    <!-- <div class="operation-wrap">
       <div class="handInThePapers" @click="handInThePapers">交卷</div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -45,12 +52,21 @@ export default {
       answers: [],
       paperId: null,
       subjectType: "",
+      title: "",
     };
   },
   created() {
     console.log(this.$route);
     this.paperId = this.$route.query.paperId;
     this.subjectType = this.$route.query.subjectType;
+    this.title =
+      this.subjectType === "Chinese"
+        ? "语文"
+        : this.subjectType === "mathematics"
+        ? "数学"
+        : this.subjectType === "English"
+        ? "英语"
+        : "";
     this.queryQuestionList();
   },
   methods: {
