@@ -131,6 +131,7 @@ export default {
     left: 520px;
     top: 130px;
     max-width: 400px;
+    text-indent: 2em;
     color: #757775;
   }
   .p2 {

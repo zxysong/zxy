@@ -108,6 +108,25 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
+
+        <div class="height"></div>
+        <div class="item" style="padding: 0; cursor: pointer">
+          <el-dropdown>
+            <div>个性化测评</div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="toTest('1')"
+                >语文</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="toTest('2')"
+                >数学</el-dropdown-item
+              >
+              <el-dropdown-item @click.native="toTest('3')"
+                >英语</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+
         <div class="height"></div>
         <div class="item">
           <router-link
@@ -120,24 +139,6 @@
     </div>
     <div class="main-wrap">
       <router-view />
-      <div class="test-self">
-        <el-dropdown>
-          <span class="el-dropdown-link title">
-            个性化测评<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click.native="toTest('1')"
-              ><span style="padding: 0 10px">语文</span></el-dropdown-item
-            >
-            <el-dropdown-item @click.native="toTest('2')"
-              ><span style="padding: 0 10px">数学</span></el-dropdown-item
-            >
-            <el-dropdown-item @click.native="toTest('3')"
-              ><span style="padding: 0 10px">英语</span></el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
     </div>
 
     <base-footer></base-footer>
@@ -192,12 +193,13 @@ export default {
         paperId = 30001;
       }
       let { href } = this.$router.resolve({
-        path: "/personalizedEvaluation",
+        path: `/personalizedEvaluation?paperId=${paperId}&subjectType=${subjectType}`,
         qeury: {
           paperId,
           subjectType,
         },
       });
+      console.log(href);
       window.open(href, "_blank");
     },
   },
@@ -209,6 +211,7 @@ export default {
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
   .main-wrap {
     flex: 1;
     min-width: 1200px;
@@ -229,9 +232,13 @@ export default {
   display: flex;
   align-items: center;
   margin-left: 100px;
+  width: 100%;
+  justify-content: center;
 }
 .item {
-  margin: 0 60px;
+  // margin: 0 60px;
+  min-width: 160px;
+  text-align: center;
   color: #535553;
   a {
     color: #535553;

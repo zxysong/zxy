@@ -48,6 +48,7 @@ export default {
     };
   },
   created() {
+    console.log(this.$route);
     this.paperId = this.$route.query.paperId;
     this.subjectType = this.$route.query.subjectType;
     this.queryQuestionList();
@@ -56,8 +57,8 @@ export default {
     ...mapMutations(["setScoreObj"]),
     async queryQuestionList() {
       let p = {
-        paperId: 10001,
-        subjectType: "Chinese",
+        paperId: this.paperId,
+        subjectType: this.subjectType,
       };
       let res = await queryQuestionList(p);
       if (res.entry) {
