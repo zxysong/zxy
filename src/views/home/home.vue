@@ -7,7 +7,7 @@
       <div class="right">
         <div class="item">
           <router-link
-            :to="'index'"
+            :to="'/home/index'"
             :class="{ active: $route.path.includes('/home/index') }"
             >首页</router-link
           >
@@ -160,7 +160,7 @@ export default {
   methods: {
     goDetailed(type) {
       this.$router.push({
-        path: `${type}`,
+        path: `/home/${type}`,
       });
     },
     goDetailedTest(type) {

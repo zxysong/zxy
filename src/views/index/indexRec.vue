@@ -27,42 +27,48 @@
 </template>
 <script>
 import baseCarousel from "@/components/baseCarousel";
+import donglin from "@/assets/imgs/donglin.jpg";
+import zhangboyin from "@/assets/imgs/zhangboyin.png";
+import zhanglijun from "@/assets/imgs/zhanglijun.png";
+import zhangtianlun from "@/assets/imgs/zhangtianlun.png";
+import dongxinrao from "@/assets/imgs/dongxinrao.jpg";
+import duanxiaoru from "@/assets/imgs/duanxiaoru.jpg";
 export default {
   data() {
     return {
       imgs: [
         {
-          url: require("@/assets/imgs/donglin.jpg"),
+          url: donglin,
           name: "董琳",
           obj:
             "授人以鱼不如授人以渔”是本人一直遵从的教学理念。自从事 专升本教学以来，本人在教学能力与师生关系方面不断受到学员的好 评，积累的英语教学经验丰富。与此同时，本人在授课过程中很注重 对学生学习习惯及学习思维的培养，而不仅只针对知识的输出。",
         },
         {
-          url: require("@/assets/imgs/zhangboyin.png"),
+          url: zhangboyin,
           name: "张博颖",
           obj:
             "从事教育行业多年，培养过多名优秀学员。熟悉考试形式，深谙考试套路，擅长由浅入深地讲解知识点，并结合实时热点考点，让不同层次的学生都能有所收获。性格热情活泼，课堂氛围轻松愉快，能及时准确地解答学习中的疑惑。",
         },
         {
-          url: require("@/assets/imgs/zhanglijun.png"),
+          url: zhanglijun,
           name: "张丽君",
           obj:
             "我是司越一块砖，哪里需要哪里搬本人具备多年英语教学经验；亲近学生，能与学生形成良好的师生关系；深谙英语学习技巧，语法梳理清晰；擅长以结构化教学培养学生的全局观，建构知识体系；注重培养学生主动思考的能力及对知识点的理解运用。",
         },
         {
-          url: require("@/assets/imgs/zhangtianlun.png"),
+          url: zhangtianlun,
           name: "张天伦",
           obj:
             "性格开朗乐观，在课堂内外与学生关系融洽。课堂讲授具有较强的感染力，能充分调动学生的积极性。从事教育行业五年，具备良好的课堂组织能力以及教学技能。在教学过程中，擅长使用生动实例来转化枯燥语法，让学生能够在“大白话”中更好地吸收知识。同时对于试卷题型进行精细化拆分，能够根据具体题型、答题技巧、个体能力等要素对学生进行针对指导。",
         },
         {
-          url: require("@/assets/imgs/dongxinrao.jpg"),
+          url: dongxinrao,
           name: "董鑫尧",
           obj:
             "是学员眼中的“好说话的班主任”，更是私下的好朋友。在课余时间和学员打成一片，学员只要关乎学习的事情，学习上的正当诉求，及时尽力的满足。让学员觉得只要是学习上的问题，都能及时帮他们解决，给予他们合理的解决方案，建立互相信任良好的师生关系。不同的学员，不同的管理方法，灵活变通，让师生关系更加融洽。这是我对待工作的态度。与学员亦师亦友，灵活的管理或许是作为一个教务老师工作的态度。",
         },
         {
-          url: require("@/assets/imgs/duanxiaoru.jpg"),
+          url: duanxiaoru,
           name: "段小茹",
           obj:
             "1、自己不会放弃班里每一位学生，鼓励班里成绩不好但是很认真的学生，树立这部分学员的自信心，对于班里不学习的学生，会严厉一些，严格要求学生，严而有理，以理服人。以身作则，为人师表，老师的一举一动，一言一行，都对学生有潜移默化的影响。",

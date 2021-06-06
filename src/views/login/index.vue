@@ -34,15 +34,30 @@ export default {
   },
   methods: {
     async submit() {
+      if (!this.loginform.username || !this.loginform.password) {
+        return this.$message({
+          message: "请输入账号密码",
+          type: "warning",
+        });
+      }
       if (this.loading) return;
       this.loading = true;
-      let { entry } = await loginApi();
+      let p = {
+        mobile: this.loginform.username,
+        password: this.loginform.password,
+      };
+      let { entry, errorMessage = "" } = await loginApi(p);
       this.loading = false;
       if (entry && entry.token) {
         localStorage.setItem("token", entry.token);
         localStorage.setItem("userName", entry.userName);
         this.$router.replace({
           path: "/admin/admintest",
+        });
+      } else {
+        this.$message({
+          message: errorMessage,
+          type: "warning",
         });
       }
     },

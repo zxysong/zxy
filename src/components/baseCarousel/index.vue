@@ -51,10 +51,10 @@ export default {
 </script>
 <style lang="less" scoped>
 /deep/.el-carousel__container {
-  height: 440px;
-  @media screen and (max-width: 1600px) {
-    height: 360px;
-  }
+  height: 400px;
+  // @media screen and (max-width: 1600px) {
+  //   height: 360px;
+  // }
   .img-wrap {
     width: 100%;
     overflow: hidden;

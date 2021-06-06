@@ -1,11 +1,7 @@
 import httpService from './config'
 
 
-export const loginApi = () => httpService.post(`/adult-exam/admin/login`, {
-  "mobile": "13272081753",
-  "password": "admin123456",
-  "username": "admin123456"
-});
+export const loginApi = (p) => httpService.post(`/adult-exam/admin/login`, p);
 
 export const pictureShow = (p, pr) => httpService.get(`/adult-exam/app/picture/show`, p, pr);
 
