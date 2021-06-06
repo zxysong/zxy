@@ -3,19 +3,28 @@
     <base-carousel :imgs="imgs"></base-carousel>
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
-      <div class="hot">专项练习</div>
-      <div v-for="item in 10" :key="item" class="item">
+      <div class="hot">{{ curType || "专项练习" }}</div>
+      <div
+        v-for="item in tableData"
+        :key="item.id"
+        class="item"
+        @click="toDetailed(item)"
+      >
         <div class="left">
-          我是内容我是内容关于浙江司越专升本课程价格调整的通知
+          {{ item.previousTitle }}
         </div>
-        <div class="right">2021年5月2日</div>
+        <div class="right">{{ item.publishTime || item.gmtCreated }}</div>
       </div>
     </div>
     <el-pagination
       background
-      layout="prev, pager, next"
-      :total="1000"
+      layout="total,prev, pager, next"
       class="pagination"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[10, 50, 100, 200]"
+      :page-size="pageSize"
+      :total="totals"
     >
     </el-pagination>
   </div>
@@ -23,8 +32,10 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import { querySlideshow } from "@/http";
+import { querySlideshow, queryQuestionListByType } from "@/http";
+import tableMethods from "@/mixins/table";
 export default {
+  mixins: [tableMethods],
   components: {
     baseCarousel,
     baseTitle,
@@ -36,17 +47,48 @@ export default {
         enTitle: "Test center",
       },
       imgs: [],
+      pageSize: 10,
+      curType: "",
     };
   },
   created() {
-    this.queryListPic();
+    this.init();
   },
   methods: {
+    init() {
+      this.curType = this.$route.query.type;
+      this.queryListPic();
+      this.queryList();
+    },
     async queryListPic() {
       let res = await querySlideshow({});
-      if (rs.entry) {
+      if (res.entry) {
         this.imgs = res.entry;
       }
+    },
+    async queryList() {
+      let p = {
+        questionType: this.curType,
+        page: this.currentPage,
+        pageSize: this.pageSize,
+      };
+      let res = await queryQuestionListByType(p);
+      this.totals = res.totalRecordSize || 0;
+      this.tableData = res.entry || [];
+    },
+    toDetailed(row) {
+      this.$router.push({
+        path: "/home/testCenterd",
+        query: {
+          id: row.id,
+          questionType: this.curType,
+        },
+      });
+    },
+  },
+  watch: {
+    $route(to) {
+      this.init();
     },
   },
 };

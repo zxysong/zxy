@@ -17,7 +17,7 @@
       <el-aside width="200px">
         <div>
           <el-menu
-            default-active="admintest"
+            :default-active="defaultRouter"
             class="el-menu-vertical-demo"
             background-color="#4a5259"
             text-color="#fff"
@@ -64,7 +64,11 @@ export default {
   data() {
     return {
       userName: "",
+      defaultRouter: "",
     };
+  },
+  created() {
+    this.defaultRouter = this.$route.name;
   },
   mounted() {
     this.userName = localStorage.getItem("userName");

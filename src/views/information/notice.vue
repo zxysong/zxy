@@ -4,7 +4,12 @@
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
       <div class="hot">考试动态——开课公告</div>
-      <div v-for="item in tableData" :key="item.id" class="item">
+      <div
+        v-for="item in tableData"
+        :key="item.id"
+        @click="toDetailed(item)"
+        class="item"
+      >
         <div class="left">
           {{ item.title }}
         </div>
@@ -65,6 +70,14 @@ export default {
       let res = await queryexamList(p);
       this.totals = res.totalRecordSize || 0;
       this.tableData = res.entry || [];
+    },
+    toDetailed(row) {
+      this.$router.push({
+        path: "/home/noticed",
+        query: {
+          id: row.id,
+        },
+      });
     },
   },
 };

@@ -14,9 +14,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/information/hot.vue'),
       },
       {
+        path: 'hotd',
+        name: 'hotd',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/hotd.vue'),
+      },
+      {
         path: 'notice',
         name: 'notice',
         component: () => import(/* webpackChunkName: "home" */ '@/views/information/notice.vue'),
+      },
+      {
+        path: 'noticed',
+        name: 'noticed',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/noticed.vue'),
       },
       {
         path: 'preparation',
@@ -24,9 +34,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/information/preparation.vue'),
       },
       {
+        path: 'preparationd',
+        name: 'preparationd',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/preparationd.vue'),
+      },
+      {
         path: 'plan',
         name: 'plan',
         component: () => import(/* webpackChunkName: "home" */ '@/views/information/plan.vue'),
+      },
+      {
+        path: 'pland',
+        name: 'pland',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/pland.vue'),
       },
       {
         path: 'universities',
@@ -34,9 +54,29 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/information/universities.vue'),
       },
       {
+        path: 'universitiesd',
+        name: 'universitiesd',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/universitiesd.vue'),
+      },
+      {
         path: 'major',
         name: 'major',
         component: () => import(/* webpackChunkName: "home" */ '@/views/information/major.vue'),
+      },
+      {
+        path: 'majord',
+        name: 'majord',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/majord.vue'),
+      },
+      {
+        path: 'subjectType',
+        name: 'subjectType',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/subjectType.vue'),
+      },
+      {
+        path: 'subjectTyped',
+        name: 'subjectTyped',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/information/subjectTyped.vue'),
       },
       {
         path: 'tutorialClass',
@@ -50,6 +90,14 @@ const routes = [
         path: 'testCenter',
         name: 'testCenter',
         component: () => import(/* webpackChunkName: "home" */ '@/views/testCenter/index.vue'),
+        meta: {
+          title: '试题中心'
+        }
+      },
+      {
+        path: 'testCenterd',
+        name: 'testCenterd',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/testCenter/testCenterd.vue'),
         meta: {
           title: '试题中心'
         }

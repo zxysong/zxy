@@ -27,6 +27,12 @@ export default new Vuex.Store({
       slideshowPicUrl: "",
       description: "",
       slideshowPicLink: "",
+    },
+    scoreObj: {
+      evaluationTitle: '',
+      suggest: '',
+      totalScore: '',
+      evaluationType: '',
     }
   },
   mutations: {
@@ -65,7 +71,18 @@ export default new Vuex.Store({
         description: "",
         subjectType: "",
       })
-    }
+    },
+    setScoreObj(state, data) {
+      state.scoreObj = Object.assign({}, state.scoreObj, data)
+    },
+    clearScoreObj(state) {
+      state.picLunObj = Object.assign({}, {
+        evaluationTitle: '',
+        suggest: '',
+        totalScore: '',
+        evaluationType: '',
+      })
+    },
   },
   actions: {
   },

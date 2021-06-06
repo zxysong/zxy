@@ -20,7 +20,19 @@
             >专升本资讯</router-link
           > -->
           <el-dropdown>
-            <div>专升本资讯</div>
+            <div
+              :class="{
+                active:
+                  $route.path.includes('hot') ||
+                  $route.path.includes('notice') ||
+                  $route.path.includes('preparation') ||
+                  $route.path.includes('plan') ||
+                  $route.path.includes('universities') ||
+                  $route.path.includes('major'),
+              }"
+            >
+              专升本资讯
+            </div>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item
                 @click.native="goDetailed('hot')"
@@ -62,12 +74,39 @@
           >
         </div>
         <div class="height"></div>
-        <div class="item">
-          <router-link
+        <div class="item" style="padding: 0; cursor: pointer">
+          <!-- <router-link
             :to="'/home/testCenter'"
             :class="{ active: $route.path.includes('/home/testCenter') }"
             >试题中心</router-link
-          >
+          > -->
+          <el-dropdown>
+            <div :class="{ active: $route.path.includes('testCenter') }">
+              试题中心
+            </div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item
+                @click.native="goDetailedTest('专项练习')"
+                :class="{ active: typeTest === '专项练习' }"
+                >专项练习</el-dropdown-item
+              >
+              <el-dropdown-item
+                @click.native="goDetailedTest('历年真题')"
+                :class="{ active: typeTest === '历年真题' }"
+                >历年真题</el-dropdown-item
+              >
+              <el-dropdown-item
+                @click.native="goDetailedTest('模拟测试')"
+                :class="{ active: typeTest === '模拟测试' }"
+                >模拟测试</el-dropdown-item
+              >
+              <el-dropdown-item
+                @click.native="goDetailedTest('考试大纲')"
+                :class="{ active: typeTest === '考试大纲' }"
+                >考试大纲</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div class="height"></div>
         <div class="item">
@@ -81,6 +120,24 @@
     </div>
     <div class="main-wrap">
       <router-view />
+      <div class="test-self">
+        <el-dropdown>
+          <span class="el-dropdown-link title">
+            个性化测评<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="toTest('1')"
+              ><span style="padding: 0 10px">语文</span></el-dropdown-item
+            >
+            <el-dropdown-item @click.native="toTest('2')"
+              ><span style="padding: 0 10px">数学</span></el-dropdown-item
+            >
+            <el-dropdown-item @click.native="toTest('3')"
+              ><span style="padding: 0 10px">英语</span></el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
 
     <base-footer></base-footer>
@@ -88,10 +145,13 @@
 </template>
 <script>
 import BaseFooter from "@/components/baseFooter";
+import merge from "webpack-merge";
 export default {
   name: "home",
   data() {
-    return {};
+    return {
+      typeTest: "",
+    };
   },
   components: {
     BaseFooter,
@@ -101,6 +161,44 @@ export default {
       this.$router.push({
         path: `${type}`,
       });
+    },
+    goDetailedTest(type) {
+      this.typeTest = type;
+      let route = this.$route.path;
+      console.log(route);
+      if (route.includes("/home/testCenter")) {
+        this.$router.push({
+          query: merge(this.$route.query, { type: type }),
+        });
+      } else {
+        this.$router.push({
+          path: "/home/testCenter",
+          query: {
+            type,
+          },
+        });
+      }
+    },
+    toTest(type) {
+      let paperId, subjectType;
+      if (type === "1") {
+        paperId = 10001;
+        subjectType = "Chinese";
+      } else if (type === "2") {
+        subjectType = "mathematics";
+        paperId = 20001;
+      } else if (type === "3") {
+        subjectType = "English";
+        paperId = 30001;
+      }
+      let { href } = this.$router.resolve({
+        path: "/personalizedEvaluation",
+        qeury: {
+          paperId,
+          subjectType,
+        },
+      });
+      window.open(href, "_blank");
     },
   },
 };
@@ -146,5 +244,17 @@ export default {
   height: 21px;
   width: 1px;
   background: #757775;
+}
+.test-self {
+  position: fixed;
+  right: 8px;
+  top: 40%;
+  z-index: 20;
+  background: #51a3f6;
+  padding: 6px 8px;
+  .title {
+    cursor: pointer;
+    color: #fff;
+  }
 }
 </style>

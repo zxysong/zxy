@@ -4,7 +4,12 @@
     <base-title :title-left="titleLeft"></base-title>
     <div class="content">
       <div class="hot hot-bor">招生专业详情</div>
-      <div v-for="item in tableData" :key="item.id" class="item">
+      <div
+        v-for="item in tableData"
+        :key="item.id"
+        @click="toDetailed(item)"
+        class="item"
+      >
         <div class="left">
           {{ item.enrollmentTitle }}
         </div>
@@ -65,6 +70,14 @@ export default {
       let res = await queryEnrollmentList(p);
       this.totals = res.totalRecordSize || 0;
       this.tableData = res.entry || [];
+    },
+    toDetailed(row) {
+      this.$router.push({
+        path: "/home/majord",
+        query: {
+          id: row.id,
+        },
+      });
     },
   },
 };

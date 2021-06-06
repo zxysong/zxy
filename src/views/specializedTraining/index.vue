@@ -111,6 +111,9 @@ export default {
         });
     },
     handleEdit(row) {
+      if (row.contextPicUrlList) {
+        row.contextPicUrlList = row.contextPicUrlList.join(",");
+      }
       this.setAddQuestion(row);
       this.$router.push({
         path: "addspecializedTraining",

@@ -30,7 +30,12 @@
       </div>
     </div>
     <div class="content">
-      <div v-for="item in tabList" :key="item.id" class="item">
+      <div
+        v-for="item in tabList"
+        :key="item.id"
+        class="item"
+        @click="goDetailed(item)"
+      >
         <div class="content-item">
           <img
             height="120px"
@@ -87,6 +92,30 @@ export default {
       } else if (this.type === "ENROLLMENT_PLAN") {
         this.$router.push({
           path: "/home/plan",
+        });
+      }
+    },
+    goDetailed(row) {
+      if (this.type === "ENROLLMENT_SCHOOL") {
+        this.$router.push({
+          path: "/home/universitiesd",
+          query: {
+            id: row.id,
+          },
+        });
+      } else if (this.type === "ENROLLMENT_PROFESSIONAL") {
+        this.$router.push({
+          path: "/home/majord",
+          query: {
+            id: row.id,
+          },
+        });
+      } else if (this.type === "ENROLLMENT_PLAN") {
+        this.$router.push({
+          path: "/home/pland",
+          query: {
+            id: row.id,
+          },
         });
       }
     },

@@ -30,20 +30,20 @@
       </div>
     </div>
     <div class="content">
-      <div class="left">
-        <img src="../../assets/imgs/4.png" alt="" />
+      <div class="left" v-if="tabList.length">
+        <img :src="`http://47.96.139.20${tabList[0].coverPicUrl}`" alt="" />
         <div class="plan">
-          <div>浙江省2021年普通高校专升本招生计划</div>
-          <div class="arrow el-icon-arrow-right"></div>
+          <div>{{ tabList[0].title }}</div>
+          <!-- <div class="arrow el-icon-arrow-right"></div> -->
         </div>
         <div class="time-line">
           <div class="time">
-            <div>2021年</div>
-            <div>05.06</div>
+            <div>{{ gety(tabList[0].publishTime) }}</div>
+            <div>{{ getm(tabList[0].publishTime) }}</div>
           </div>
           <div class="line"></div>
-          <div class="detailed">
-            这是具体的浙江省2021年普通高校专升本招生计划，这是具体的浙江省2021年普通高校专升本招生计划
+          <div class="detailed" :title="tabList[0].context">
+            {{ tabList[0].context }}...
           </div>
         </div>
       </div>
@@ -52,6 +52,7 @@
           class="item base-pointer"
           v-for="(item, index) in tabList"
           :key="item.id"
+          @click="goDetailed(item)"
         >
           <div>
             <span
@@ -109,6 +110,40 @@ export default {
           path: "/home/preparation",
         });
       }
+    },
+    goDetailed(row) {
+      if (this.type === "HOT_RECOMMEND") {
+        this.$router.push({
+          path: "/home/hotd",
+          query: {
+            id: row.id,
+          },
+        });
+      } else if (this.type === "COURSE_ANNOUNCEMENT") {
+        this.$router.push({
+          path: "/home/noticed",
+          query: {
+            id: row.id,
+          },
+        });
+      } else if (this.type === "PREPARE_FOR_INFORMATION") {
+        this.$router.push({
+          path: "/home/preparationd",
+          query: {
+            id: row.id,
+          },
+        });
+      }
+    },
+    gety(item) {
+      if (!item) return;
+      let y = item.split("年")[0];
+      return y + "年";
+    },
+    getm(item) {
+      if (!item) return;
+      let y = item.split("年")[1];
+      return y;
     },
   },
 };
@@ -191,6 +226,9 @@ export default {
         padding-left: 20px;
         width: 80%;
         font-size: 14px;
+        height: 60px;
+        overflow: hidden;
+        cursor: pointer;
       }
       .line {
         width: 1px;

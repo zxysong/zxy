@@ -86,12 +86,14 @@
                   :before-upload="beforeAvatarUpload"
                   :data="uploadData"
                   :headers="uploadData.token"
+                  :file-list="fileList"
+                  :on-remove="handleRemove"
                 >
-                  <img
+                  <!-- <img
                     v-if="contextPicUrl"
                     :src="`http://47.96.139.20${contextPicUrl}`"
                     class="avatar"
-                  />
+                  /> -->
                   <i
                     class="el-icon-plus avatar-uploader-icon"
                     @click="addpic"
@@ -111,7 +113,7 @@
           class="btn"
           @click="addtest"
           style="margin-left: 120px"
-          >立即添加</el-button
+          >完成</el-button
         >
         <el-button size="small" @click="back">取消</el-button>
       </div>
@@ -131,7 +133,7 @@ export default {
       ],
       typeOptions: ["大学语文", "高等数学", "大学英语"],
       coverPicUrl: "",
-      contextPicUrl: "",
+      contextPicUrl: [],
       uploadData: {
         code: "other",
         token: {
@@ -162,6 +164,7 @@ export default {
           { required: true, message: "请上传图片", trigger: "blur" },
         ],
       },
+      fileList: [],
     };
   },
   mounted() {
@@ -170,7 +173,16 @@ export default {
     };
     this.form = Object.assign({}, this.form, this.addQuestionObj);
     this.coverPicUrl = this.addQuestionObj.coverPicUrl;
-    this.contextPicUrl = this.addQuestionObj.contextPicUrl;
+    if (this.addQuestionObj.contextPicUrlList) {
+      let fileList = this.addQuestionObj.contextPicUrlList.split(",");
+      fileList.forEach((item) => {
+        let obj = {
+          url: "http://47.96.139.20" + item,
+        };
+        this.fileList.push(obj);
+        this.contextPicUrl.push(item);
+      });
+    }
     console.log(this.form);
   },
   methods: {
@@ -183,11 +195,21 @@ export default {
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
     },
     handleAvatarSuccess1(response, file, list) {
-      if (list.length > 1) {
-        list.shift();
-      }
-      this.contextPicUrl = "";
-      this.form.contextPicUrl = response?.entry?.fileNameNew || "";
+      let url = response?.entry?.fileNameNew || "";
+      this.form.contextPicUrl = url;
+      this.contextPicUrl.push(url);
+      this.fileList = list;
+    },
+    handleRemove(flie, fileList) {
+      let arr = [];
+      fileList.forEach((item) => {
+        if (item.response && item.response.entry.fileNameNew) {
+          arr.push(item.response.entry.fileNameNew);
+        } else {
+          arr.push(item.url);
+        }
+      });
+      this.contextPicUrl = arr;
     },
     beforeAvatarUpload() {},
     addpic() {},
@@ -203,7 +225,14 @@ export default {
             ...this.form,
             createdBy: userName,
           };
-          params.questionType = "历年真题";
+          let temp = [];
+          if (this.contextPicUrl) {
+            this.contextPicUrl.forEach((item) => {
+              temp.push(item.replace("http://47.96.139.20", ""));
+            });
+          }
+          params.contextPicUrlList = temp || [];
+          params.questionType = "考试大纲";
           params.publishTime = this.getTime();
           let res;
           if (params.id) {
@@ -218,7 +247,7 @@ export default {
               type: "success",
             });
             this.$router.push({
-              path: "themeYear",
+              path: "examination",
             });
           }
         } else {

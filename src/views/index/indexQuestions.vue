@@ -37,7 +37,12 @@
       </div>
     </div>
     <div class="content">
-      <div v-for="item in tabList" :key="item.id" class="item">
+      <div
+        v-for="item in tabList"
+        :key="item.id"
+        class="item"
+        @click="goDetailed(item)"
+      >
         <div style="padding: 20px">
           <img
             height="120px"
@@ -48,6 +53,9 @@
         <div class="plan">{{ item.previousTitle }}</div>
         <div class="time">{{ item.description }}</div>
       </div>
+    </div>
+    <div v-show="tabList.length" class="more base-pointer" @click="toDetaiiled">
+      查看更多>
     </div>
   </div>
 </template>
@@ -93,20 +101,33 @@ export default {
         this.tabList = [];
       }
     },
-    toDetaiiled() {
-      if (this.type === "ENROLLMENT_SCHOOL") {
+    goDetailed(row) {
+      let curType = ["高等数学", "大学语文", "大学英语"];
+      if (curType.includes(this.type)) {
         this.$router.push({
-          path: "/home/universities",
+          path: "/home/subjectTyped",
+          query: {
+            id: row.id,
+            type: this.type,
+          },
         });
-      } else if (this.type === "ENROLLMENT_PROFESSIONAL") {
+      } else {
         this.$router.push({
-          path: "/home/major",
-        });
-      } else if (this.type === "ENROLLMENT_PLAN") {
-        this.$router.push({
-          path: "/home/plan",
+          path: "/home/subjectTyped",
+          query: {
+            id: row.id,
+            type: this.type,
+          },
         });
       }
+    },
+    toDetaiiled() {
+      this.$router.push({
+        path: "/home/subjectType",
+        query: {
+          type: this.type,
+        },
+      });
     },
   },
 };
@@ -174,5 +195,12 @@ export default {
       padding-bottom: 8px;
     }
   }
+}
+.more {
+  color: #51a3f6;
+  text-align: right;
+  font-size: 14px;
+  padding-right: 64px;
+  padding-bottom: 20px;
 }
 </style>

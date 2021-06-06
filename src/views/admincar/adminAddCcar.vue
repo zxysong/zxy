@@ -56,9 +56,18 @@
             </el-col>
           </el-row>
           <el-row :gutter="20">
-            <el-col :span="16"
+            <el-col :span="8"
               ><el-form-item label="轮播图链接" prop="slideshowPicLink">
-                <el-input v-model="form.slideshowPicLink"></el-input>
+                <!-- <el-input v-model="form.slideshowPicLink"></el-input> -->
+                <el-select v-model="form.slideshowPicLink">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  >
+                  </el-option>
+                </el-select>
               </el-form-item>
             </el-col>
           </el-row>
@@ -69,7 +78,7 @@
           class="btn"
           @click="addtest"
           style="margin-left: 120px"
-          >立即添加</el-button
+          >完成</el-button
         >
         <el-button size="small" @click="back">取消</el-button>
       </div>
@@ -111,6 +120,60 @@ export default {
           { required: true, message: "请输入动态内容", trigger: "blur" },
         ],
       },
+      options: [
+        {
+          value: "/home/index",
+          label: "首页",
+        },
+        {
+          value: "/home/hot",
+          label: "热门推荐",
+        },
+        {
+          value: "/home/notice",
+          label: "开课公告",
+        },
+        {
+          value: "/home/preparation",
+          label: "备考资讯",
+        },
+        {
+          value: "/home/plan",
+          label: "招生计划",
+        },
+        {
+          value: "/home/universities",
+          label: "招生院校",
+        },
+        {
+          value: "/home/major",
+          label: "招生专业",
+        },
+        {
+          value: "/home/tutorialClass",
+          label: "辅导课堂",
+        },
+        {
+          value: "/home/testCenter?type=专项练习",
+          label: "专项练习",
+        },
+        {
+          value: "/home/testCenter?type=历年真题",
+          label: "历年真题",
+        },
+        {
+          value: "/home/testCenter?type=模拟测试",
+          label: "模拟测试",
+        },
+        {
+          value: "/home/testCenter?type=考试大纲",
+          label: "考试大纲",
+        },
+        {
+          value: "/home/aboutUs",
+          label: "关于我们",
+        },
+      ],
     };
   },
   mounted() {

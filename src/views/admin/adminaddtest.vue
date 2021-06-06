@@ -84,7 +84,7 @@
           class="btn"
           @click="addtest"
           style="margin-left: 120px"
-          >立即添加</el-button
+          >完成</el-button
         >
         <el-button size="small" @click="back">取消</el-button>
       </div>

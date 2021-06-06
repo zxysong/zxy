@@ -13,16 +13,16 @@
     </div>
     <div class="item">
       <div>辅导课堂</div>
-      <p class="mr-30 base-pointer">追光计划</p>
-      <p class="mr-30 base-pointer">巅峰计划X</p>
-      <p class="mr-30 base-pointer">蝶变计划A&B</p>
+      <p class="mr-30 base-pointer" @click="toSubject1">追光计划</p>
+      <p class="mr-30 base-pointer" @click="toSubject1">巅峰计划X</p>
+      <p class="mr-30 base-pointer" @click="toSubject1">蝶变计划A&B</p>
     </div>
     <div class="item">
       <div>试题中心</div>
-      <p class="mr-30 base-pointer">高等数学</p>
-      <p class="mr-30 base-pointer">大学英语</p>
-      <p class="mr-30 base-pointer">大学语文</p>
-      <p class="mr-30 base-pointer">历年真题</p>
+      <p class="mr-30 base-pointer" @click="toSubject('高等数学')">高等数学</p>
+      <p class="mr-30 base-pointer" @click="toSubject('大学英语')">大学英语</p>
+      <p class="mr-30 base-pointer" @click="toSubject('大学语文')">大学语文</p>
+      <p class="mr-30 base-pointer" @click="toSubject('历年真题')">历年真题</p>
     </div>
     <div class="item">
       <div>浙江司越专升本</div>
@@ -32,6 +32,25 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    toSubject(type) {
+      this.$router.push({
+        path: "/home/subjectType",
+        query: {
+          type,
+        },
+      });
+    },
+    toSubject1(type) {
+      this.$router.push({
+        path: "/home/tutorialClass",
+      });
+    },
+  },
+};
+</script>
 <style lang="less" scoped>
 .footer {
   display: flex;

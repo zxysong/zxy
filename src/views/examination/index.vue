@@ -2,7 +2,7 @@
   <div>
     <base-breadcrumb :list="touterList"></base-breadcrumb>
     <div class="content">
-      <div style="padding-top: 28px">历年真题</div>
+      <div style="padding-top: 28px">考试大纲</div>
       <div class="clear">
         <el-button size="small" class="fr btn" @click="addtest"
           >添加考试大纲</el-button
@@ -77,7 +77,7 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      touterList: [{ name: "试题管理" }, { name: "历年真题" }],
+      touterList: [{ name: "试题管理" }, { name: "考试大纲" }],
     };
   },
   mounted() {
@@ -93,7 +93,7 @@ export default {
     },
     async queryList() {
       let p = {
-        questionType: "历年真题",
+        questionType: "考试大纲",
         page: this.currentPage,
         pageSize: this.pageSize,
       };
@@ -111,6 +111,9 @@ export default {
         });
     },
     handleEdit(row) {
+      if (row.contextPicUrlList) {
+        row.contextPicUrlList = row.contextPicUrlList.join(",");
+      }
       this.setAddQuestion(row);
       this.$router.push({
         path: "addexamination",

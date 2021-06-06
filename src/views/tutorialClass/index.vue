@@ -5,7 +5,7 @@
     <div class="content">
       <div class="course-wrap mb36">
         <div class="title">
-          <span class="course-title">全日制协议班</span>
+          <span class="course-title">追光计划</span>
         </div>
         <table class="table-wrap" border>
           <colgroup>
@@ -21,18 +21,18 @@
             </th>
           </tr>
 
-          <tr v-for="(item, index) in agreementList" :key="index">
-            <td>{{ item.learningStage }}</td>
+          <tr v-for="(item, index) in tabList1" :key="index">
+            <td>{{ item.studyStage }}</td>
             <td>{{ item.teachingArrangement }}</td>
-            <td>{{ item.learningStage }}</td>
-            <td>{{ item.remarks }}</td>
-            <td>{{ item.consult }}</td>
+            <td>{{ item.teachingMethod }}</td>
+            <td>{{ item.remark }}</td>
+            <td>{{ item.telephone }}</td>
           </tr>
         </table>
       </div>
       <div class="course-wrap mb36">
         <div class="title">
-          <span class="course-title">全日制协议班</span>
+          <span class="course-title">巅峰计划X</span>
         </div>
         <table class="table-wrap" border>
           <colgroup>
@@ -48,18 +48,18 @@
             </th>
           </tr>
 
-          <tr v-for="(item, index) in agreementList" :key="index">
-            <td>{{ item.learningStage }}</td>
+          <tr v-for="(item, index) in tabList2" :key="index">
+            <td>{{ item.studyStage }}</td>
             <td>{{ item.teachingArrangement }}</td>
-            <td>{{ item.learningStage }}</td>
-            <td>{{ item.remarks }}</td>
-            <td>{{ item.consult }}</td>
+            <td>{{ item.teachingMethod }}</td>
+            <td>{{ item.remark }}</td>
+            <td>{{ item.telephone }}</td>
           </tr>
         </table>
       </div>
       <div class="course-wrap mb36">
         <div class="title">
-          <span class="course-title">全日制协议班</span>
+          <span class="course-title">蝶变计划A&B</span>
         </div>
         <table class="table-wrap" border>
           <colgroup>
@@ -75,12 +75,12 @@
             </th>
           </tr>
 
-          <tr v-for="(item, index) in agreementList" :key="index">
-            <td>{{ item.learningStage }}</td>
+          <tr v-for="(item, index) in tabList3" :key="index">
+            <td>{{ item.studyStage }}</td>
             <td>{{ item.teachingArrangement }}</td>
-            <td>{{ item.learningStage }}</td>
-            <td>{{ item.remarks }}</td>
-            <td>{{ item.consult }}</td>
+            <td>{{ item.teachingMethod }}</td>
+            <td>{{ item.remark }}</td>
+            <td>{{ item.telephone }}</td>
           </tr>
         </table>
       </div>
@@ -90,7 +90,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import { querySlideshow } from "@/http";
+import { querySlideshow, queryTutorongClass } from "@/http";
 export default {
   components: {
     baseCarousel,
@@ -119,16 +119,64 @@ export default {
         },
       ],
       imgs: [],
+      tabList1: [],
+      tabList2: [],
+      tabList3: [],
     };
   },
   created() {
     this.queryListPic();
+    this.tabChange1("追光计划");
+    this.tabChange2("巅峰计划X");
+    this.tabChange3("蝶变计划");
   },
   methods: {
     async queryListPic() {
       let res = await querySlideshow({});
       if (res.entry) {
         this.imgs = res.entry;
+      }
+    },
+    async tabChange1(className) {
+      this.type = className;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        className,
+      };
+      let res = await queryTutorongClass(p);
+      if (res.entry) {
+        this.tabList1 = res.entry;
+      } else {
+        this.tabList1 = [];
+      }
+    },
+    async tabChange2(className) {
+      this.type = className;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        className,
+      };
+      let res = await queryTutorongClass(p);
+      if (res.entry) {
+        this.tabList2 = res.entry;
+      } else {
+        this.tabList2 = [];
+      }
+    },
+    async tabChange3(className) {
+      this.type = className;
+      let p = {
+        page: 1,
+        pageSize: 10,
+        className,
+      };
+      let res = await queryTutorongClass(p);
+      if (res.entry) {
+        this.tabList3 = res.entry;
+      } else {
+        this.tabList3 = [];
       }
     },
   },

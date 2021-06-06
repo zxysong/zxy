@@ -3,7 +3,7 @@
     <el-carousel :interval="interval" arrow="always">
       <el-carousel-item v-for="(item, index) in imgs" :key="index">
         <!-- <h3>{{ item }}</h3> -->
-        <div class="img-wrap">
+        <div class="img-wrap" @click="topage(item)">
           <img :src="`http://47.96.139.20${item.slideshowPicUrl}`" alt="" />
         </div>
       </el-carousel-item>
@@ -35,6 +35,17 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    topage(item) {
+      if (!item.slideshowPicLink) {
+        return;
+      }
+      let { href } = this.$router.resolve({
+        path: item.slideshowPicLink,
+      });
+      window.open(href, "_blank");
+    },
   },
 };
 </script>
