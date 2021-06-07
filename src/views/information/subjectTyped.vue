@@ -6,7 +6,10 @@
       <div class="hot">最新试题详情</div>
       <div class="item">
         <p class="title">{{ rowData.previousTitle }}</p>
-        <p>{{ rowData.context || rowData.description }}</p>
+        <!-- <p>{{ rowData.context || rowData.description }}</p> -->
+        <p v-for="item in rowData.contextPicUrlList" :key="item">
+          <img :src="`http://47.96.139.20${item}`" alt="" />
+        </p>
         <p class="person">{{ rowData.createdBy }} {{ rowData.publishTime }}</p>
       </div>
     </div>

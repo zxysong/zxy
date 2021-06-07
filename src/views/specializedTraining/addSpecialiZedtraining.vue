@@ -193,12 +193,14 @@ export default {
       }
       this.coverPicUrl = "";
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.$refs.form.validateField("coverPicUrl");
     },
     handleAvatarSuccess1(response, file, list) {
       let url = response?.entry?.fileNameNew || "";
       this.form.contextPicUrl = url;
       this.contextPicUrl.push(url);
       this.fileList = list;
+      this.$refs.form.validateField("contextPicUrl");
     },
     handleRemove(flie, fileList) {
       let arr = [];

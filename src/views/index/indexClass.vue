@@ -161,5 +161,12 @@ export default {
       align-items: center;
     }
   }
+  /deep/.el-table {
+    .el-table__body {
+      .cell {
+        font-size: 14px;
+      }
+    }
+  }
 }
 </style>

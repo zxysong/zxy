@@ -91,7 +91,7 @@ export default {
       }
       let p = {
         questionBankVOList: this.answers,
-        subjectType: "Chinese",
+        subjectType: this.subjectType,
       };
       let res = await submitAnswerAndGetEvaluation(p);
       if (res.status) {

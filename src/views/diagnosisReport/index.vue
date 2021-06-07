@@ -1,6 +1,7 @@
 <template>
   <div class="content-wrap">
     <slotHtml>
+      <div class="summary">{{ scoreObj.totalScore }}分</div>
       <div class="summary">{{ scoreObj.evaluationTitle }}</div>
       <div class="details">
         {{ scoreObj.suggest }}
@@ -60,7 +61,7 @@ export default {
 .summary {
   color: rgba(235, 91, 51, 100);
   font-size: 24px;
-  margin-top: 16px;
+  margin-top: 6px;
   text-align: center;
 }
 .details {

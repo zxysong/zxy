@@ -191,6 +191,7 @@ export default {
       }
       this.slideshowPicUrl = "";
       this.form.slideshowPicUrl = response?.entry?.fileNameNew || "";
+      this.$refs.form.validateField("slideshowPicUrl");
     },
     beforeAvatarUpload() {},
     addpic() {},

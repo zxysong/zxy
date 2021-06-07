@@ -21,7 +21,7 @@
             </th>
           </tr>
 
-          <tr v-for="(item, index) in tabList1" :key="index">
+          <tr v-for="(item, index) in tabList1" :key="index" class="self-tr">
             <td>{{ item.studyStage }}</td>
             <td>{{ item.teachingArrangement }}</td>
             <td>{{ item.teachingMethod }}</td>
@@ -48,7 +48,7 @@
             </th>
           </tr>
 
-          <tr v-for="(item, index) in tabList2" :key="index">
+          <tr v-for="(item, index) in tabList2" :key="index" class="self-tr">
             <td>{{ item.studyStage }}</td>
             <td>{{ item.teachingArrangement }}</td>
             <td>{{ item.teachingMethod }}</td>
@@ -75,7 +75,7 @@
             </th>
           </tr>
 
-          <tr v-for="(item, index) in tabList3" :key="index">
+          <tr v-for="(item, index) in tabList3" :key="index" class="self-tr">
             <td>{{ item.studyStage }}</td>
             <td>{{ item.teachingArrangement }}</td>
             <td>{{ item.teachingMethod }}</td>
@@ -234,6 +234,12 @@ export default {
         }
       }
     }
+  }
+}
+.self-tr {
+  td {
+    font-size: 14px;
+    line-height: 23px;
   }
 }
 </style>

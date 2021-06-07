@@ -144,6 +144,7 @@ export default {
       }
       this.coverPicUrl = "";
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.$refs.form.validateField("coverPicUrl");
     },
     beforeAvatarUpload() {},
     addpic() {},

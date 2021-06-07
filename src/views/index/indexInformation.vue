@@ -58,7 +58,7 @@
             <span
               class="circle"
               :style="{ background: index > 2 ? '#757775' : '#ee7435' }"
-              >{{ `0${index + 1}` }}</span
+              >{{ changeIndex(index) }}</span
             >
             <span class="info over-hidden">{{ item.title }}</span>
           </div>
@@ -144,6 +144,13 @@ export default {
       if (!item) return;
       let y = item.split("年")[1];
       return y;
+    },
+    changeIndex(index) {
+      if (index < 10) {
+        return "0" + index;
+      } else if (index >= 10) {
+        return index;
+      }
     },
   },
 };

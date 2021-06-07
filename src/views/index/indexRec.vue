@@ -8,10 +8,12 @@
       <div class="right"></div>
     </div>
     <div class="content">
-      <el-carousel :interval="3000" arrow="always" :height="'400px'">
+      <el-carousel :autoplay="false" arrow="always" :height="'500px'">
         <el-carousel-item v-for="(item, index) in imgs" :key="index">
           <div class="img-wrap">
-            <img class="img" :src="item.url" alt="" />
+            <div class="img">
+              <img class="img-1" :src="item.url" alt="" />
+            </div>
             <p class="name">{{ item.name }}</p>
             <p class="p1">
               {{ item.obj }}
@@ -26,7 +28,6 @@
   </div>
 </template>
 <script>
-import baseCarousel from "@/components/baseCarousel";
 import donglin from "@/assets/imgs/donglin.jpg";
 import zhangboyin from "@/assets/imgs/zhangboyin.png";
 import zhanglijun from "@/assets/imgs/zhanglijun.png";
@@ -79,7 +80,7 @@ export default {
     };
   },
   components: {
-    baseCarousel,
+    // baseCarousel,
   },
 };
 </script>
@@ -122,26 +123,35 @@ export default {
   background: url("../../assets/imgs/indexRec.png") no-repeat right bottom;
   background-size: cover;
   .img {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    // height: 200px;
     position: absolute;
     left: 300px;
+    .img-1 {
+      width: 100%;
+      height: 100%;
+    }
   }
   .name {
     position: absolute;
-    left: 520px;
+    left: 560px;
     color: #51a3f6;
+    font-size: 18px;
   }
   .p1 {
     position: absolute;
-    left: 520px;
+    left: 560px;
     top: 130px;
-    max-width: 400px;
+    // max-width: 400px;
+    min-width: 150px;
+    width: 40%;
     text-indent: 2em;
     color: #757775;
+    font-size: 14px;
+    line-height: 22px;
   }
   .p2 {
-    top: 248px;
+    top: 210px;
   }
 }
 </style>

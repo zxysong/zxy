@@ -37,14 +37,10 @@
         @click="goDetailed(item)"
       >
         <div class="content-item">
-          <img
-            height="120px"
-            :src="`http://47.96.139.20${item.coverPicUrl}`"
-            alt=""
-          />
+          <img :src="`http://47.96.139.20${item.coverPicUrl}`" alt="" />
           <div class="plan">
             <span>{{ item.enrollmentTitle }}</span>
-            <span class="arrow el-icon-arrow-right"></span>
+            <span class="arrow">></span>
           </div>
           <div class="time">{{ item.publishTime }}</div>
         </div>
@@ -172,24 +168,28 @@ export default {
     }
     img {
       width: 100%;
+      height: 100%;
     }
     .plan {
       display: flex;
       justify-content: space-between;
       padding-top: 16px;
       padding-left: 8px;
+      cursor: pointer;
       & > div {
         color: #101010;
       }
       .arrow {
         border-radius: 50%;
         background: #fff;
-        width: 22px;
-        height: 22px;
+        width: 18px;
+        height: 18px;
+        line-height: 14px;
         padding-left: 3px;
         color: #ccc;
-        padding-top: 2px;
+        // padding-top: 2px;
         border: 1px solid #ccc;
+        margin-right: 10px;
       }
     }
     .time {
@@ -197,6 +197,7 @@ export default {
       font-size: 14px;
       padding-left: 8px;
       padding-bottom: 8px;
+      line-height: 24px;
     }
   }
 }
