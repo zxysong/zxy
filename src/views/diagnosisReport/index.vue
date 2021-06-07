@@ -68,6 +68,7 @@ export default {
   color: rgba(83, 85, 83, 100);
   font-size: 22px;
   margin-top: 18px;
-  text-align: center;
+  // text-align: center;
+  line-height: 32px;
 }
 </style>
