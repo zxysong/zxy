@@ -46,7 +46,9 @@
         </div>
       </div>
     </div>
-    <div class="more base-pointer" @click="toDetaiiled">查看更多</div>
+    <div class="more base-pointer" v-if="tabList.length" @click="toDetaiiled">
+      查看更多
+    </div>
   </div>
 </template>
 <script>

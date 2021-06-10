@@ -10,7 +10,7 @@
         @click="toDetailed(item)"
         class="item"
       >
-        <div class="left">
+        <div class="left base-pointer">
           {{ item.enrollmentTitle }}
         </div>
         <div class="right">{{ item.publishTime }}</div>

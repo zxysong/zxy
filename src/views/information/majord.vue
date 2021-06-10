@@ -15,7 +15,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import { queryByIdEnrollment } from "@/http";
+import { queryByIdEnrollment, querySlideshow } from "@/http";
 export default {
   data() {
     return {
@@ -35,6 +35,7 @@ export default {
   created() {
     this.curId = this.$route.query.id;
     this.queryList();
+    this.queryListPic();
   },
   methods: {
     async queryList() {
@@ -43,6 +44,12 @@ export default {
       };
       let res = await queryByIdEnrollment(p);
       this.rowData = Object.assign({}, res.entry);
+    },
+    async queryListPic() {
+      let res = await querySlideshow({});
+      if (res.entry) {
+        this.imgs = res.entry;
+      }
     },
   },
 };
