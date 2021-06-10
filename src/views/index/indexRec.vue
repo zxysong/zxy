@@ -28,12 +28,12 @@
   </div>
 </template>
 <script>
-import donglin from "@/assets/imgs/donglin.jpg";
+import donglin from "@/assets/imgs/donglin.png";
 import zhangboyin from "@/assets/imgs/zhangboyin.png";
 import zhanglijun from "@/assets/imgs/zhanglijun.png";
 import zhangtianlun from "@/assets/imgs/zhangtianlun.png";
-import dongxinrao from "@/assets/imgs/dongxinrao.jpg";
-import duanxiaoru from "@/assets/imgs/duanxiaoru.jpg";
+import dongxinrao from "@/assets/imgs/dongxinrao.png";
+import duanxiaoru from "@/assets/imgs/duanxiaoru.png";
 export default {
   data() {
     return {
