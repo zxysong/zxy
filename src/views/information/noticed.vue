@@ -15,7 +15,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import { queryByIdExam, queryListPic } from "@/http";
+import { queryByIdExam, querySlideshow } from "@/http";
 export default {
   data() {
     return {
