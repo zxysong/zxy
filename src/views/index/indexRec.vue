@@ -14,13 +14,15 @@
             <div class="img">
               <img class="img-1" :src="item.url" alt="" />
             </div>
-            <p class="name">{{ item.name }}</p>
-            <p class="p1">
-              {{ item.obj }}
-            </p>
-            <p class="p1 p2" v-if="item.obj1">
-              {{ item.obj1 }}
-            </p>
+            <div>
+              <p class="name">{{ item.name }}</p>
+              <p class="p1">
+                {{ item.obj }}
+              </p>
+              <p class="p1 p2" v-if="item.obj1">
+                {{ item.obj1 }}
+              </p>
+            </div>
           </div>
         </el-carousel-item>
       </el-carousel>
@@ -137,11 +139,12 @@ export default {
     left: 560px;
     color: #51a3f6;
     font-size: 18px;
+    top: calc(50% - 30px);
   }
   .p1 {
     position: absolute;
     left: 560px;
-    top: 130px;
+    top: 50%;
     // max-width: 400px;
     min-width: 150px;
     width: 40%;
@@ -151,7 +154,7 @@ export default {
     line-height: 22px;
   }
   .p2 {
-    top: 210px;
+    top: calc(50% + 80px);
   }
 }
 </style>

@@ -9,6 +9,18 @@
       授业有道
       培养人才”的引领下，我司独立研发完全拥有自主产权的教材达20余册，课程体系4个，有力的保障的上千名学员顺利被本科录取。在教育的道路上我们一直克服难关，勇于突破，打破常规，精益求精，全身心地为广大莘莘学子提升综合素质和竞争力而努力。相信司越，给你希望；选择司越，让你的梦想插上翅膀；在现在，在未来，在司越，成就自己，成就希望。
     </div>
+    <div class="about-content">
+      <p class="about-title">公司历程</p>
+      <img class="img" src="../../assets/imgs/about1.png" alt="" />
+    </div>
+    <div class="about-content">
+      <p class="about-title">院校分布</p>
+      <img class="img" src="../../assets/imgs/about2.png" alt="" />
+    </div>
+    <div class="about-content">
+      <p class="about-title">企业荣誉</p>
+      <img class="img" src="../../assets/imgs/about3.png" alt="" />
+    </div>
   </div>
 </template>
 <script>
@@ -47,5 +59,21 @@ export default {
 .content {
   padding: 32px 64px;
   line-height: 1.8;
+}
+.about-content {
+  padding: 32px 64px;
+  text-align: center;
+  .img {
+    width: 80%;
+  }
+}
+.about-title {
+  background-color: #6cdcc0;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  padding-left: 28px;
+  border-radius: 4px;
 }
 </style>
