@@ -8,7 +8,7 @@
       <div class="right"></div>
     </div>
     <div class="content">
-      <el-carousel :autoplay="false" arrow="always" :height="'500px'">
+      <el-carousel :interval="3000" arrow="always" :height="'500px'">
         <el-carousel-item v-for="(item, index) in imgs" :key="index">
           <div class="img-wrap">
             <div class="img">

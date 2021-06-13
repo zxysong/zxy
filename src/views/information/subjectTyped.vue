@@ -91,6 +91,9 @@ export default {
       padding-top: 20px;
       color: #999;
     }
+    img {
+      width: 100%;
+    }
   }
 }
 .pagination {
