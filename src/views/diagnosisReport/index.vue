@@ -70,5 +70,6 @@ export default {
   margin-top: 18px;
   // text-align: center;
   line-height: 32px;
+  white-space: pre-line;
 }
 </style>
