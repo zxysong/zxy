@@ -3,7 +3,7 @@
     <slotHtml>
       <div class="summary">{{ scoreObj.totalScore }}分</div>
       <div class="summary">{{ scoreObj.evaluationTitle }}</div>
-      <div class="details details-html" v-html="scoreObj.suggest"></div>
+      <div class="details details-html" v-html="suggest"></div>
       <div v-if="scoreObj.suggestPicUrlList" class="test-img">
         <img
           v-for="item in scoreObj.suggestPicUrlList"
@@ -25,7 +25,6 @@ export default {
   },
   data() {
     return {
-      hbs: schoolReport,
       math: {
         1: {
           summary: "基础薄弱，需更加努力",
@@ -59,6 +58,9 @@ export default {
   },
   computed: {
     ...mapState(["scoreObj"]),
+    suggest() {
+      return this.scoreObj.suggest.replace(/\r/g, "<br/>");
+    },
   },
 };
 </script>
@@ -72,7 +74,7 @@ export default {
 }
 .details {
   color: rgba(83, 85, 83, 100);
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 18px;
   // text-align: center;
   line-height: 32px;
