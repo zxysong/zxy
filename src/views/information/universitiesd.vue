@@ -6,7 +6,7 @@
       <div class="hot">招生院校详情</div>
       <div class="item">
         <p class="title">{{ rowData.enrollmentTitle }}</p>
-        <p>{{ rowData.context }}</p>
+        <p v-html="rowData.context"></p>
         <p class="person">{{ rowData.createdBy }} {{ rowData.publishTime }}</p>
       </div>
     </div>
@@ -44,6 +44,11 @@ export default {
       };
       let res = await queryByIdEnrollment(p);
       this.rowData = Object.assign({}, res.entry);
+      if (this.rowData.context) {
+        this.rowData.context = this.rowData.context
+          .replace(/\n/g, "<br/>")
+          .replace(/\r/g, "<br/>");
+      }
     },
     async queryListPic() {
       let res = await querySlideshow({});
