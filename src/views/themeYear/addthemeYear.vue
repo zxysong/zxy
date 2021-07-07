@@ -38,7 +38,7 @@
               ><el-form-item label="历年真题封面" prop="coverPicUrl">
                 <el-upload
                   class="avatar-uploader"
-                  action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
+                  action="$BaseUrl+'/adult-exam/app/picture/fileUpload'"
                   list-type="picture-card"
                   :auto-upload="true"
                   :multiple="false"
@@ -78,7 +78,7 @@
               ><el-form-item label="历年真题内容" prop="contextPicUrl">
                 <el-upload
                   class="avatar-uploader"
-                  action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
+                  action="$BaseUrl+'/adult-exam/app/picture/fileUpload'"
                   list-type="picture-card"
                   :auto-upload="true"
                   :multiple="false"
