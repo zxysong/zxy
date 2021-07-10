@@ -43,12 +43,8 @@
         class="item"
         @click="goDetailed(item)"
       >
-        <div style="padding: 20px">
-          <img
-            height="120px"
-            :src="`http://47.96.139.20${item.coverPicUrl}`"
-            alt=""
-          />
+        <div style="padding: 20px" class="base-pointer">
+          <img :src="`http://47.96.139.20${item.coverPicUrl}`" alt="" />
         </div>
         <div class="plan">{{ item.previousTitle }}</div>
         <div class="time">{{ item.description }}</div>
@@ -181,6 +177,7 @@ export default {
     margin-right: 50px;
     img {
       width: 100%;
+      height: 100%;
     }
     .plan {
       text-align: center;

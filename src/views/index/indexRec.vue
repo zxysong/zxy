@@ -8,17 +8,21 @@
       <div class="right"></div>
     </div>
     <div class="content">
-      <el-carousel :interval="3000" arrow="always" :height="'400px'">
+      <el-carousel :interval="3000" arrow="always" :height="'500px'">
         <el-carousel-item v-for="(item, index) in imgs" :key="index">
           <div class="img-wrap">
-            <img class="img" :src="item.url" alt="" />
-            <p class="name">{{ item.name }}</p>
-            <p class="p1">
-              {{ item.obj }}
-            </p>
-            <p class="p1 p2" v-if="item.obj1">
-              {{ item.obj1 }}
-            </p>
+            <div class="img">
+              <img class="img-1" :src="item.url" alt="" />
+            </div>
+            <div>
+              <p class="name">{{ item.name }}</p>
+              <p class="p1">
+                {{ item.obj }}
+              </p>
+              <p class="p1 p2" v-if="item.obj1">
+                {{ item.obj1 }}
+              </p>
+            </div>
           </div>
         </el-carousel-item>
       </el-carousel>
@@ -26,17 +30,37 @@
   </div>
 </template>
 <script>
-import baseCarousel from "@/components/baseCarousel";
-import donglin from "@/assets/imgs/donglin.jpg";
+import tanqingshan from "@/assets/imgs/tanqingshan.png";
+import xuyue1 from "@/assets/imgs/xuyue1.png";
+import yuaojie1 from "@/assets/imgs/yuaojie1.png";
+import donglin from "@/assets/imgs/donglin.png";
 import zhangboyin from "@/assets/imgs/zhangboyin.png";
 import zhanglijun from "@/assets/imgs/zhanglijun.png";
 import zhangtianlun from "@/assets/imgs/zhangtianlun.png";
-import dongxinrao from "@/assets/imgs/dongxinrao.jpg";
-import duanxiaoru from "@/assets/imgs/duanxiaoru.jpg";
+import dongxinrao from "@/assets/imgs/dongxinrao.png";
+import duanxiaoru from "@/assets/imgs/duanxiaoru.png";
 export default {
   data() {
     return {
       imgs: [
+        {
+          url: tanqingshan,
+          name: "谭青山",
+          obj:
+            "教学严谨，要求严格，能深入了解学生的学习状况，循序善诱，注重数学思维的培养；平易近人，注意调动学生的积极性，课堂气氛较为活跃；上课例题丰富，不厌其烦，细心讲解，使学生有所收获；能虚心并广泛听取学生的意见和反馈信息，做到及时修正和调整自己的教学。",
+        },
+        {
+          url: xuyue1,
+          name: "许月",
+          obj:
+            "大家眼中的“教导主任”。私下的朋友，班级里的教导主任。无论在任何时候都可以和学生打成一片，只有关乎学习的事情，一丝不苟。所有的学生看到我都觉得老师很可怕，老师为何如此的凶，老师怎么都不笑的，这是我对待学生工作的态度。课程结束，娱乐中，所有的学生看见我都觉得老师很搞笑，老师为何如此逗，老师怎么一直都在笑，这是我对待朋友们的态度。亦师亦友，恩威并施或许是作为一个教师老师可有的态度。",
+        },
+        {
+          url: yuaojie1,
+          name: "于奥杰",
+          obj:
+            "授人以鱼不如授人以渔”是本人一直遵从的教学理念。自从事 专升本教学以来，本人在教学能力与师生关系方面不断受到学员的好 评，积累的英语教学经验丰富。与此同时，本人在授课过程中很注重 对学生学习习惯及学习思维的培养，而不仅只针对知识的输出。",
+        },
         {
           url: donglin,
           name: "董琳",
@@ -79,7 +103,7 @@ export default {
     };
   },
   components: {
-    baseCarousel,
+    // baseCarousel,
   },
 };
 </script>
@@ -122,26 +146,36 @@ export default {
   background: url("../../assets/imgs/indexRec.png") no-repeat right bottom;
   background-size: cover;
   .img {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    // height: 200px;
     position: absolute;
     left: 300px;
+    .img-1 {
+      width: 100%;
+      height: 100%;
+    }
   }
   .name {
     position: absolute;
-    left: 520px;
+    left: 560px;
     color: #51a3f6;
+    font-size: 18px;
+    top: calc(50% - 30px);
   }
   .p1 {
     position: absolute;
-    left: 520px;
-    top: 130px;
-    max-width: 400px;
+    left: 560px;
+    top: 50%;
+    // max-width: 400px;
+    min-width: 150px;
+    width: 40%;
     text-indent: 2em;
     color: #757775;
+    font-size: 14px;
+    line-height: 22px;
   }
   .p2 {
-    top: 248px;
+    top: calc(50% + 80px);
   }
 }
 </style>

@@ -1,9 +1,16 @@
 <template>
   <div class="content-wrap">
     <slotHtml>
+      <div class="summary">{{ scoreObj.totalScore }}分</div>
       <div class="summary">{{ scoreObj.evaluationTitle }}</div>
-      <div class="details">
-        {{ scoreObj.suggest }}
+      <div class="details details-html" v-html="suggest"></div>
+      <div v-if="scoreObj.suggestPicUrlList" class="test-img">
+        <img
+          v-for="item in scoreObj.suggestPicUrlList"
+          :src="`http://47.96.139.20${item}`"
+          alt=""
+          :key="item"
+        />
       </div>
     </slotHtml>
   </div>
@@ -18,7 +25,6 @@ export default {
   },
   data() {
     return {
-      schoolReport,
       math: {
         1: {
           summary: "基础薄弱，需更加努力",
@@ -52,6 +58,9 @@ export default {
   },
   computed: {
     ...mapState(["scoreObj"]),
+    suggest() {
+      return this.scoreObj.suggest.replace(/\r/g, "<br/>");
+    },
   },
 };
 </script>
@@ -60,13 +69,26 @@ export default {
 .summary {
   color: rgba(235, 91, 51, 100);
   font-size: 24px;
-  margin-top: 16px;
+  margin-top: 6px;
   text-align: center;
 }
 .details {
   color: rgba(83, 85, 83, 100);
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 18px;
-  text-align: center;
+  // text-align: center;
+  line-height: 32px;
+  white-space: pre-line;
+  padding: 0 120px;
+}
+.test-img {
+  padding: 0 120px;
+  margin-top: 50px;
+  img {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 </style>
+
+

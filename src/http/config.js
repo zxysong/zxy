@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 let url = process.env.VUE_APP_API;
+
 class http {
   constructor() {
     this._http = axios.create({
@@ -51,3 +52,4 @@ class http {
   }
 }
 export default new http();
+export const BaseUrl = url;

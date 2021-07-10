@@ -167,7 +167,10 @@ export default {
       this.typeTest = type;
       let route = this.$route.path;
       console.log(route);
-      if (route.includes("/home/testCenter")) {
+      if (
+        !route.includes("/home/testCenterd") &&
+        route.includes("/home/testCenter")
+      ) {
         this.$router.push({
           query: merge(this.$route.query, { type: type }),
         });

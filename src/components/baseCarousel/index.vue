@@ -1,10 +1,19 @@
 <template>
   <div>
-    <el-carousel :interval="interval" arrow="always">
+    <el-carousel
+      :interval="interval"
+      arrow="always"
+      :height="bannerHeight + 'px'"
+    >
       <el-carousel-item v-for="(item, index) in imgs" :key="index">
         <!-- <h3>{{ item }}</h3> -->
         <div class="img-wrap" @click="topage(item)">
-          <img :src="`http://47.96.139.20${item.slideshowPicUrl}`" alt="" />
+          <img
+            ref="imgRefs"
+            :src="`http://47.96.139.20${item.slideshowPicUrl}`"
+            alt=""
+            @load="load()"
+          />
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -34,7 +43,16 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      bannerHeight: "",
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (this.$refs.imgRefs && this.$refs.imgRefs[0]) {
+        this.bannerHeight = this.$refs.imgRefs[0].height;
+      }
+    });
   },
   methods: {
     topage(item) {
@@ -46,12 +64,20 @@ export default {
       });
       window.open(href, "_blank");
     },
+    load() {
+      this.$nextTick(() => {
+        this.bannerHeight =
+          this.$refs.imgRefs &&
+          this.$refs.imgRefs[0] &&
+          this.$refs.imgRefs[0].height;
+      });
+    },
   },
 };
 </script>
 <style lang="less" scoped>
 /deep/.el-carousel__container {
-  height: 400px;
+  // height: 400px;
   // @media screen and (max-width: 1600px) {
   //   height: 360px;
   // }

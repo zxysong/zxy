@@ -4,9 +4,9 @@
       <img :src="schoolReport" alt="" />
     </div>
     <div class="report-wrap">
-       <slot ></slot>
+      <slot></slot>
     </div>
-    <div class="go-back" @click="handleGoBack">返回</div>
+    <div class="go-back" @click="handleGoBack">关闭</div>
   </div>
 </template>
 <script>
@@ -18,10 +18,11 @@ export default {
     };
   },
   methods: {
-      handleGoBack(){
-          this.$emit('handleGoBack', {})
-      }
-  }
+    handleGoBack() {
+      this.$emit("handleGoBack", {});
+      window.close();
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

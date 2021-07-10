@@ -21,7 +21,7 @@
               ><el-form-item label="招生计划封面" prop="coverPicUrl">
                 <el-upload
                   class="avatar-uploader"
-                  action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
+                  action="$BaseUrl+'/adult-exam/app/picture/fileUpload'"
                   list-type="picture-card"
                   :auto-upload="true"
                   :multiple="false"
@@ -137,6 +137,7 @@ export default {
       }
       this.coverPicUrl = "";
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.$refs.form.validateField("coverPicUrl");
     },
     beforeAvatarUpload() {},
     addpic() {},

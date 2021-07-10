@@ -38,7 +38,7 @@
               ><el-form-item label="专项练习封面" prop="coverPicUrl">
                 <el-upload
                   class="avatar-uploader"
-                  action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
+                  action="$BaseUrl+'/adult-exam/app/picture/fileUpload'"
                   list-type="picture-card"
                   :auto-upload="true"
                   :multiple="false"
@@ -77,7 +77,7 @@
               ><el-form-item label="专项练习内容" prop="contextPicUrl">
                 <el-upload
                   class="avatar-uploader"
-                  action="http://47.96.139.20:8200/adult-exam/app/picture/fileUpload"
+                  action="$BaseUrl+'/adult-exam/app/picture/fileUpload'"
                   list-type="picture-card"
                   :auto-upload="true"
                   :multiple="false"
@@ -193,12 +193,14 @@ export default {
       }
       this.coverPicUrl = "";
       this.form.coverPicUrl = response?.entry?.fileNameNew || "";
+      this.$refs.form.validateField("coverPicUrl");
     },
     handleAvatarSuccess1(response, file, list) {
       let url = response?.entry?.fileNameNew || "";
       this.form.contextPicUrl = url;
       this.contextPicUrl.push(url);
       this.fileList = list;
+      this.$refs.form.validateField("contextPicUrl");
     },
     handleRemove(flie, fileList) {
       let arr = [];

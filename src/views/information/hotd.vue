@@ -6,7 +6,7 @@
       <div class="hot">热门推荐详情</div>
       <div class="item">
         <p class="title">{{ rowData.title }}</p>
-        <p>{{ rowData.context }}</p>
+        <p v-html="rowData.context"></p>
         <p class="person">{{ rowData.createdBy }} {{ rowData.publishTime }}</p>
       </div>
     </div>
@@ -15,7 +15,7 @@
 <script>
 import baseCarousel from "@/components/baseCarousel";
 import baseTitle from "@/components/baseTitle";
-import { queryByIdExam } from "@/http";
+import { queryByIdExam, querySlideshow } from "@/http";
 export default {
   data() {
     return {
@@ -35,6 +35,7 @@ export default {
   created() {
     this.curId = this.$route.query.id;
     this.queryList();
+    this.queryListPic();
   },
   methods: {
     async queryList() {
@@ -43,6 +44,17 @@ export default {
       };
       let res = await queryByIdExam(p);
       this.rowData = Object.assign({}, res.entry);
+      if (this.rowData.context) {
+        this.rowData.context = this.rowData.context
+          .replace(/\n/g, "<br/>")
+          .replace(/\r/g, "<br/>");
+      }
+    },
+    async queryListPic() {
+      let res = await querySlideshow({});
+      if (res.entry) {
+        this.imgs = res.entry;
+      }
     },
   },
 };

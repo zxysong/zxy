@@ -87,8 +87,11 @@ export default {
     },
   },
   watch: {
-    $route(to) {
-      this.init();
+    $route: {
+      handler(newRouter) {
+        this.init();
+      },
+      immediate: true,
     },
   },
 };

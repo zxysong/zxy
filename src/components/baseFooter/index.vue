@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <p class="tip">浙ICP备15039024号-1</p>
+    <p class="tip">浙公网安备 33011802002160号</p>
     <p class="tip">建议谷歌、火狐浏览器浏览本网站</p>
     <p class="tip tip-pad">
       Copyright @ 2014-2021 杭州司越教育咨询有限公司 All Rights Reserved
